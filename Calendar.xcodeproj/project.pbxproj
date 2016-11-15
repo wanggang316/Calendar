@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331DEA7C1DDABC0C00ADAF33 /* CalendarWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DEA7B1DDABC0C00ADAF33 /* CalendarWeekView.swift */; };
 		336C2B7A1DDAB44E0084F7AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C2B791DDAB44E0084F7AD /* AppDelegate.swift */; };
 		336C2B7C1DDAB44E0084F7AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C2B7B1DDAB44E0084F7AD /* ViewController.swift */; };
 		336C2B7F1DDAB44E0084F7AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336C2B7D1DDAB44E0084F7AD /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		331DEA7B1DDABC0C00ADAF33 /* CalendarWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekView.swift; sourceTree = "<group>"; };
 		336C2B761DDAB44E0084F7AD /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		336C2B791DDAB44E0084F7AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		336C2B7B1DDAB44E0084F7AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				336C2B8C1DDAB4C60084F7AD /* CalendarView.swift */,
+				331DEA7B1DDABC0C00ADAF33 /* CalendarWeekView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			files = (
 				336C2B7C1DDAB44E0084F7AD /* ViewController.swift in Sources */,
 				336C2B7A1DDAB44E0084F7AD /* AppDelegate.swift in Sources */,
+				331DEA7C1DDABC0C00ADAF33 /* CalendarWeekView.swift in Sources */,
 				336C2B8D1DDAB4C60084F7AD /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +316,7 @@
 				336C2B8A1DDAB44E0084F7AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
