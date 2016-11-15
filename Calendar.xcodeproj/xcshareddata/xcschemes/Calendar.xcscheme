@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "336C2B751DDAB44E0084F7AD"
-               BuildableName = "Calendar.app"
+               BlueprintIdentifier = "331DEAAB1DDACC3C00ADAF33"
+               BuildableName = "Calendar.framework"
                BlueprintName = "Calendar"
                ReferencedContainer = "container:Calendar.xcodeproj">
             </BuildableReference>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "336C2B751DDAB44E0084F7AD"
-            BuildableName = "Calendar.app"
-            BlueprintName = "Calendar"
-            ReferencedContainer = "container:Calendar.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "336C2B751DDAB44E0084F7AD"
-            BuildableName = "Calendar.app"
+            BlueprintIdentifier = "331DEAAB1DDACC3C00ADAF33"
+            BuildableName = "Calendar.framework"
             BlueprintName = "Calendar"
             ReferencedContainer = "container:Calendar.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "336C2B751DDAB44E0084F7AD"
-            BuildableName = "Calendar.app"
+            BlueprintIdentifier = "331DEAAB1DDACC3C00ADAF33"
+            BuildableName = "Calendar.framework"
             BlueprintName = "Calendar"
             ReferencedContainer = "container:Calendar.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
