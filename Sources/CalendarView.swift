@@ -67,6 +67,8 @@ open class CalendarView: UIView {
         self.backgroundColor = UIColor.groupTableViewBackground
         
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        self.collectionView.register(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
+        self.collectionView.register(CalendarMonthFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.addSubview(self.collectionView)
@@ -131,9 +133,6 @@ open class CalendarView: UIView {
         /// subview insets
         self.weekView.contentInset = UIEdgeInsets(top: 0, left: inset.left, bottom: 0, right: inset.right)
     }
-    
-    
-    
 }
 
 
@@ -152,6 +151,16 @@ extension CalendarView: UICollectionViewDataSource {
         
         cell.backgroundColor = UIColor.yellow
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! CalendarMonthHeaderView
+            return view
+        } else {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as! CalendarMonthFooterView
+            return view
+        }
     }
 }
 
@@ -175,9 +184,9 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         return self.itemSize ?? CGSize(width: 50, height: 50)
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .zero
+        return CGSize(width: 100, height: 40)
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .zero
+        return CGSize(width: 100, height: 40)
     }
 }
