@@ -43,8 +43,13 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let controller = SimpleViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        if indexPath.row == 0 {
+            let controller = SimpleViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        } else {
+            let controller = TableViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 

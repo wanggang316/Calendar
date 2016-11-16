@@ -13,6 +13,8 @@ class SimpleViewController: UIViewController {
     
     var calendarView: CalendarView = {
         let cal = CalendarView()
+        cal.minimumLineSpacing = 1
+        cal.minimumInteritemSpacing = 1
         cal.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return cal
     }()
@@ -20,7 +22,7 @@ class SimpleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.groupTableViewBackground
-        self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.calendarView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
         self.view.addSubview(self.calendarView)
     }
 

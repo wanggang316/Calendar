@@ -19,6 +19,7 @@
 		331DEB1E1DDAD01D00ADAF33 /* Calendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331DEAAC1DDACC3C00ADAF33 /* Calendar.framework */; };
 		331DEB1F1DDAD01D00ADAF33 /* Calendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 331DEAAC1DDACC3C00ADAF33 /* Calendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */; };
+		337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */; };
 		338748E71DDADCAB00FB3FA5 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		331DEB181DDACFDD00ADAF33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		331DEB1A1DDACFDD00ADAF33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				331DEB151DDACFDD00ADAF33 /* Assets.xcassets */,
 				331DEB171DDACFDD00ADAF33 /* LaunchScreen.storyboard */,
 				331DEB1A1DDACFDD00ADAF33 /* Info.plist */,
+				337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */,
 				338748E71DDADCAB00FB3FA5 /* SimpleViewController.swift in Sources */,
 				331DEB111DDACFDD00ADAF33 /* ViewController.swift in Sources */,
+				337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */,
 				331DEB0F1DDACFDD00ADAF33 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
