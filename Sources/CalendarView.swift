@@ -19,7 +19,10 @@ open class CalendarView: UIView {
     }
     
     /// The calendar scroll view content inset
-    open var contentInset: UIEdgeInsets?
+    open var contentInset: UIEdgeInsets = UIEdgeInsets.zero
+    
+    /// week view height
+    open var weekViewHeight: CGFloat = 44.0
     
     /// The line spacing
     open var minimumLineSpacing: CGFloat = 0.0 {
@@ -39,6 +42,8 @@ open class CalendarView: UIView {
         }
     }
     
+    /// The spacing from week view to date item
+    open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
     
     // MARK: - private properties
     fileprivate var itemSize: CGSize?
@@ -82,66 +87,45 @@ open class CalendarView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        let weekViewHeight: CGFloat = 55.0
-        var incrementalInsetTop = weekViewHeight
-        
         /// default content inset
         var inset = UIEdgeInsets.zero
         
-        var indicatorInsetTop: CGFloat = 0.0
-        if let contentInset = self.contentInset {
-            
-            let contentWidth = self.collectionView.frame.width - contentInset.left - contentInset.right - 6 * self.minimumInteritemSpacing
-            let residue = contentWidth.truncatingRemainder(dividingBy: 7)
-            
-            var cellWidth = contentWidth / 7.0
-            
-            /// bottom
-            inset.bottom = contentInset.bottom
+        let contentWidth = self.collectionView.frame.width - contentInset.left - contentInset.right - 6 * self.minimumInteritemSpacing
+        let residue = contentWidth.truncatingRemainder(dividingBy: 7)
+        
+        var cellWidth = contentWidth / 7.0
+        
+        /// bottom
+        inset.bottom = contentInset.bottom
 
-            incrementalInsetTop = weekViewHeight + contentInset.top
-            indicatorInsetTop = contentInset.top
-            
-            /// To calculate content inset left, right, and cellWidth
-            if residue != 0 {
-                var horizontalPadding: CGFloat = 0.0
-                if residue > 7.0 / 2.0 {
-                    horizontalPadding = contentInset.left - (7.0 - residue) / 2.0
-                    cellWidth = (contentWidth + 7 - residue) / 7.0
-                } else {
-                    horizontalPadding = contentInset.left + (residue / 2.0)
-                    cellWidth = (contentWidth - residue) / 7.0
-                }
-                /// left
-                inset.left = horizontalPadding
-                /// right
-                inset.right = horizontalPadding
+        /// To calculate content inset left, right, and cellWidth
+        if residue != 0 {
+            var horizontalPadding: CGFloat = 0.0
+            if residue > 7.0 / 2.0 {
+                horizontalPadding = contentInset.left - (7.0 - residue) / 2.0
+                cellWidth = (contentWidth + 7 - residue) / 7.0
+            } else {
+                horizontalPadding = contentInset.left + (residue / 2.0)
+                cellWidth = (contentWidth - residue) / 7.0
             }
-            self.itemSize = CGSize(width: cellWidth, height: cellWidth)
-         }
-        
-        /// 0 or 64, default 0
-        var baseInsetTop: CGFloat = 0
-        
-        let originContentInsetTop = self.collectionView.contentInset.top
-        if
-            originContentInsetTop > 0 &&
-            originContentInsetTop != incrementalInsetTop &&
-            originContentInsetTop != weekViewHeight {
-           baseInsetTop  = 64 - self.frame.origin.y
+            /// left
+            inset.left = horizontalPadding
+            /// right
+            inset.right = horizontalPadding
         }
+        self.itemSize = CGSize(width: cellWidth, height: cellWidth)
         
         /// top
-        inset.top = baseInsetTop + incrementalInsetTop
+        inset.top = self.contentInset.top + self.weekViewHeight + self.minimumWeekAndDateItemSpacing
         
         self.collectionView.contentInset = inset
         
         /// indicator insets
-        let indicatorInsets = UIEdgeInsets(top: inset.top, left: 0, bottom: 0, right: 0)
+        let indicatorInsets = UIEdgeInsets(top: self.contentInset.top + self.weekViewHeight, left: 0, bottom: 0, right: 0)
         self.collectionView.scrollIndicatorInsets = indicatorInsets
         
         /// set frames
-        self.weekView.frame = CGRect(x: 0, y: baseInsetTop + indicatorInsetTop, width: self.frame.width, height: weekViewHeight)
+        self.weekView.frame = CGRect(x: 0, y: self.contentInset.top, width: self.frame.width, height: weekViewHeight)
         self.collectionView.frame = self.bounds
         
         /// subview insets
