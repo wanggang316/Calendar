@@ -10,7 +10,7 @@ import UIKit
 
 open class CalendarView: UIView {
     
-    // MARK: - Properties
+    // MARK: - public properties
     
     override open var frame: CGRect {
         didSet {
@@ -18,7 +18,7 @@ open class CalendarView: UIView {
         }
     }
     
-    ///
+    /// The calendar scroll view content inset
     open var contentInset: UIEdgeInsets?
     
     /// The line spacing
@@ -39,6 +39,15 @@ open class CalendarView: UIView {
         }
     }
     
+    
+    // MARK: - private properties
+    private var itemSize: CGSize? {
+        didSet {
+            let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            layout?.itemSize = itemSize!
+            self.collectionView.collectionViewLayout = layout!
+        }
+    }
     
     // MARK: - UI
     private let collectionView: UICollectionView = {
@@ -79,21 +88,27 @@ open class CalendarView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        let weekViewHeight: CGFloat = 40.0
-        let baseTopInset: CGFloat = min(64, self.collectionView.contentInset.top > 0 ? self.collectionView.contentInset.top : 0)
-
+        let weekViewHeight: CGFloat = 54.0
+        var incrementalInsetTop = weekViewHeight
+        
+        /// default content inset
+        var inset = UIEdgeInsets.zero
+        
+        var indicatorInsetTop: CGFloat = 0.0
         if let contentInset = self.contentInset {
+            
             let contentWidth = self.collectionView.frame.width - contentInset.left - contentInset.right
             let residue = contentWidth.truncatingRemainder(dividingBy: 7)
             
             var cellWidth = contentWidth / 7.0
             
-            let top = baseTopInset + weekViewHeight + contentInset.top
-            let bottom = contentInset.bottom
+            /// bottom
+            inset.bottom = contentInset.bottom
+
+            incrementalInsetTop = weekViewHeight + contentInset.top
+            indicatorInsetTop = contentInset.top
             
-            var left: CGFloat = 0.0
-            var right: CGFloat = 0.0
-            
+            /// To calculate content inset left, right, and cellWidth
             if residue != 0 {
                 var horizontalPadding: CGFloat = 0.0
                 if residue > 7.0 / 2.0 {
@@ -103,29 +118,48 @@ open class CalendarView: UIView {
                     horizontalPadding = contentInset.left + (residue / 2.0)
                     cellWidth = (contentWidth - residue) / 7.0
                 }
-                
-                left = horizontalPadding
-                right = horizontalPadding
+                /// left
+                inset.left = horizontalPadding
+                /// right
+                inset.right = horizontalPadding
             }
-            
-            let inset = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
-            let indicator = UIEdgeInsets(top: top - contentInset.top, left: 0, bottom: 0, right: 0)
-            
-            
-            self.collectionView.contentInset = inset
-            self.collectionView.scrollIndicatorInsets = indicator
-            
-            let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-            layout?.itemSize = CGSize(width: cellWidth, height: cellWidth)
-            self.collectionView.collectionViewLayout = layout!
+            self.itemSize = CGSize(width: cellWidth, height: cellWidth)
+         }
+        
+        /// 0 or 64, default 0
+        var baseInsetTop: CGFloat = 0
+        
+        let originContentInsetTop = self.collectionView.contentInset.top
+        if  originContentInsetTop > 0 &&
+            originContentInsetTop != incrementalInsetTop &&
+            originContentInsetTop != weekViewHeight {
+           baseInsetTop  = 64
         }
         
+        /// top
+        inset.top = baseInsetTop + incrementalInsetTop
         
-        self.weekView.frame = CGRect(x: 0, y: baseTopInset, width: self.frame.width, height: weekViewHeight)
+        self.collectionView.contentInset = inset
+        
+        /// indicator insets
+        let indicatorInsets = UIEdgeInsets(top: inset.top - indicatorInsetTop, left: 0, bottom: 0, right: 0)
+        self.collectionView.scrollIndicatorInsets = indicatorInsets
+        
+        /// set frames
+        self.weekView.frame = CGRect(x: 0, y: baseInsetTop, width: self.frame.width, height: weekViewHeight)
         self.collectionView.frame = self.bounds
-
-        
     }
+    
+    
+    override open func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+    }
+    
+    override open func didMoveToSuperview() {
+        super.didMoveToSuperview()
+    }
+    
+    
     
     
 }
