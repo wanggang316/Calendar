@@ -21,6 +21,7 @@
 		337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */; };
 		337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */; };
 		337DD93D1DDC609900D9CFCE /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */; };
+		337DD9411DDC7EEE00D9CFCE /* DateCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */; };
 		338748E71DDADCAB00FB3FA5 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
+		337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCenter.swift; sourceTree = "<group>"; };
 		338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				331DEAC31DDACD0400ADAF33 /* CalendarWeekView.swift */,
 				337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */,
 				337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */,
+				337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				337DD93D1DDC609900D9CFCE /* CalendarMonthView.swift in Sources */,
 				331DEACE1DDACD0400ADAF33 /* CalendarWeekView.swift in Sources */,
+				337DD9411DDC7EEE00D9CFCE /* DateCenter.swift in Sources */,
 				331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
