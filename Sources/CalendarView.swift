@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias CalendarDateCell = UICollectionViewCell
+
 open class CalendarView: UIView {
     
     // MARK: - public properties
@@ -23,6 +25,9 @@ open class CalendarView: UIView {
     
     /// week view height
     open var weekViewHeight: CGFloat = 44.0
+    
+    /// The spacing from week view to date item
+    open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
     
     /// The line spacing
     open var minimumLineSpacing: CGFloat = 0.0 {
@@ -42,8 +47,73 @@ open class CalendarView: UIView {
         }
     }
     
-    /// The spacing from week view to date item
-    open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
+    
+    // MARK: - public functions
+    
+    /**
+     Rigiste date cell with a identifier.
+     
+     - parameter cellClass: `CalendarDateCell` type
+     - parameter identifier: unique identifier for cell
+     */
+    public func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
+        self.collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
+    }
+    
+    /**
+     Rigiste month header view  with a identifier.
+     
+     - parameter cellClass: `CalendarMonthHeaderView` type
+     - parameter identifier: unique identifier for header view
+     */
+    public func register(monthHeader viewClass: Swift.AnyClass?, withReuseIdentifier identifier: String) {
+        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: identifier)
+    }
+    
+    /**
+     Rigiste month footer view with a identifier.
+     
+     - parameter cellClass: `CalendarMonthHeaderView` type
+     - parameter identifier: unique identifier for footer view
+     */
+    public func register(monthFooter viewClass: Swift.AnyClass?, withReuseIdentifier identifier: String) {
+        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
+    }
+    
+    /** Discard the dataSource and delegate data and requery as necessary. */
+    public func reloadData() {
+        self.collectionView.reloadData()
+    }
+    
+    /**
+     Get date cell of the `date`, like `cellAt(indexPath....`, this method find a cell by `date`.
+     
+     - parameter date: date
+     
+     - returns: The corresponding date cell
+     */
+    public func cellAt(date: Date) -> CalendarDateCell? {
+        return nil
+    }
+    
+    /**
+     Reload the assigned `dates`.
+     
+     - parameter dates: assigned dates, array of `Date`
+     */
+    public func reloadItems(at dates: [Date]) {
+        
+    }
+    
+    /**
+     Reload the assigned `months`.
+     
+     - parameter months: assigned months, array of `Date`
+     */
+    public func reloadMonths(at months: [Date]) {
+        
+    }
+    
     
     // MARK: - private properties
     fileprivate var itemSize: CGSize?
