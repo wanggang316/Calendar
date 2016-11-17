@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3318E83F1DDDB3C00053FF23 /* SimpleDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */; };
 		331DEACC1DDACD0400ADAF33 /* Calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 331DEAC11DDACD0400ADAF33 /* Calendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DEAC21DDACD0400ADAF33 /* CalendarView.swift */; };
 		331DEACE1DDACD0400ADAF33 /* CalendarWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DEAC31DDACD0400ADAF33 /* CalendarWeekView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDateCell.swift; sourceTree = "<group>"; };
 		331DEAAC1DDACC3C00ADAF33 /* Calendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Calendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		331DEAC11DDACD0400ADAF33 /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
 		331DEAC21DDACD0400ADAF33 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */,
+				3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				331DEACE1DDACD0400ADAF33 /* CalendarWeekView.swift in Sources */,
 				337DD9411DDC7EEE00D9CFCE /* DateCenter.swift in Sources */,
 				331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */,
+				3318E83F1DDDB3C00053FF23 /* SimpleDateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

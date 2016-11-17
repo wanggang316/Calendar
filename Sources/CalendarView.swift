@@ -14,6 +14,25 @@ open class CalendarView: UIView {
     
     // MARK: - public properties
     
+    open var fromDate: Date = {
+        let calendar = Calendar.current
+        let date = Date()
+        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        components.year = 2016
+        components.month = 3
+        components.day = 14
+        return calendar.date(from: components)!
+    }()// Date(timeIntervalSinceNow: -60 * 60 * 24 * 30 * 2)
+    open var toDate: Date = {
+        let calendar = Calendar.current
+        let date = Date()
+        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        components.year = 2017
+        components.month = 2
+        components.day = 1
+        return calendar.date(from: components)!
+    }()
+    
     override open var frame: CGRect {
         didSet {
             self.layoutSubviews()
@@ -136,7 +155,7 @@ open class CalendarView: UIView {
         
         self.backgroundColor = UIColor.groupTableViewBackground
         
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        self.collectionView.register(SimpleDateCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView.register(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
         self.collectionView.register(CalendarMonthFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         self.collectionView.dataSource = self
@@ -209,16 +228,31 @@ open class CalendarView: UIView {
 extension CalendarView: UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 12
+        return Date.months(from: self.fromDate, to: self.toDate)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        let firstDateInSection = Date.firstDate(inSection: section, from: self.fromDate)
+        if let firstDateInSection = firstDateInSection {
+            let weekdayIndex = firstDateInSection.weekday - 1
+            
+            let lastDateOfMonth = firstDateInSection.lastDateOfMonth()
+            let lastDateWeekdayIndex = lastDateOfMonth.weekday
+            
+            let count = weekdayIndex + Date.days(of: firstDateInSection) + 7 - lastDateWeekdayIndex
+            return count
+        }
+        return 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SimpleDateCell
         
+        let date = Date.date(at: indexPath, from: self.fromDate)
+        if let date = date {
+            print("\(indexPath): \(date)")
+        }
+        cell.date = date
         cell.backgroundColor = UIColor.yellow
         return cell
     }

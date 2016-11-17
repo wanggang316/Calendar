@@ -186,13 +186,13 @@ public extension Date {
  count extension
  */
 public extension Date {
-    public static func days(ofMonth month: Date) -> Int {
+    public static func days(of month: Date) -> Int {
         let calendar = Calendar.current
         let range = calendar.range(of: .day, in: .month, for: month)
         return range?.count ?? 0
     }
     
-    public static func days(fromMonth: Date, toMonth: Date) -> Int {
+    public static func days(from fromMonth: Date, to toMonth: Date) -> Int {
         let firstDate = fromMonth.firstDateOfMonth()
         let lastDate = toMonth.lastDateOfMonth()
         let calendar = Calendar.current
@@ -200,10 +200,16 @@ public extension Date {
         return components.day! + 1
     }
     
-    public static func nights(fromDate: Date, toDate: Date) -> Int {
+    public static func nights(from fromDate: Date, to toDate: Date) -> Int {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: fromDate, to: toDate)
         return components.day!
+    }
+    
+    public static func months(from fromMonth: Date, to toMonth: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month], from: fromMonth, to: toMonth)
+        return components.month! + 1
     }
 }
 
@@ -228,7 +234,7 @@ extension Date {
             
             let weekday = firstDateInSeciton.weekday
             
-            guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(ofMonth: firstDateInSeciton)) else { return nil }
+            guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(of: firstDateInSeciton)) else { return nil }
             
             let calendar = Calendar.current
             var components = calendar.dateComponents([.month, .day], from: firstDateInSeciton)
