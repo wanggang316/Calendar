@@ -103,9 +103,9 @@ public extension Date {
      
      - paramter month: `Date` type
      */
-    public static func firstDate(ofMonth month: Date) -> Date {
+    public func firstDateOfMonth() -> Date {
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day], from: month)
+        var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.day = 1
         return calendar.date(from: components)!
     }
@@ -116,9 +116,9 @@ public extension Date {
      - parameter month: `Date` type, the date must contain correct year, month, day value.
      - returns:
      */
-    public static func lastDate(ofMonth month: Date) -> Date {
+    public func lastDateOfMonth() -> Date {
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day], from: month)
+        var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.month = components.month! + 1
         components.day = 0
         return calendar.date(from: components)!
@@ -131,10 +131,10 @@ public extension Date {
      
      - returns: ...
      */
-    public static func lastDate(ofWeekday weekday: Date) -> Date {
+    public func lastDateOfWeekday() -> Date {
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day, .weekday], from: weekday)
-        components.day = components.day! - weekday.weekday + 1
+        var components = calendar.dateComponents([.year, .month, .day, .weekday], from: self)
+        components.day = components.day! - self.weekday + 1
         return calendar.date(from: components)!
     }
     
@@ -193,8 +193,8 @@ public extension Date {
     }
     
     public static func days(fromMonth: Date, toMonth: Date) -> Int {
-        let firstDate = Date.firstDate(ofMonth: fromMonth)
-        let lastDate = Date.lastDate(ofMonth: toMonth)
+        let firstDate = fromMonth.firstDateOfMonth()
+        let lastDate = toMonth.lastDateOfMonth()
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: firstDate, to: lastDate)
         return components.day! + 1
@@ -213,15 +213,39 @@ public extension Date {
  */
 extension Date {
     
-    static func date(forFirstDayInSection day: Date, firstDate: Date) -> Date? {
+    static func firstDate(inSection section: Int, from date: Date) -> Date? {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.month = section
+        return calendar.date(byAdding: components, to: date.firstDateOfMonth())
+    }
+    
+    static func date(at indexPath: IndexPath, from date: Date) -> Date? {
+        
+        let firstDateInSeciton = Date.firstDate(inSection: indexPath.section, from: date)
+        
+        if let firstDateInSeciton = firstDateInSeciton {
+            
+            let weekday = firstDateInSeciton.weekday
+            
+            guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(ofMonth: firstDateInSeciton)) else { return nil }
+            
+            let calendar = Calendar.current
+            var components = calendar.dateComponents([.month, .day], from: firstDateInSeciton)
+            components.day = indexPath.row - (weekday - 1)
+            components.month = indexPath.section
+            
+            return calendar.date(byAdding: components, to: date.firstDateOfMonth())
+        }
         return nil
     }
     
-    static func date(at indexPath: IndexPath, firstDate: Date) -> Date? {
-        return nil
-    }
-    
-    static func indexPath(forDate date: Date, firstDate: Date) -> IndexPath? {
-        return nil
+    static func indexPath(forDate date: Date, from fromDate: Date) -> IndexPath? {
+        
+        let firstDateOfMonth = date.firstDateOfMonth()
+        
+        let section = (date.year - fromDate.year) * 12 + date.month - fromDate.month
+        let index = firstDateOfMonth.weekday + date.day - 2
+        return IndexPath(item: index, section: section)
     }
 }
