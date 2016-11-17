@@ -234,7 +234,7 @@ extension Date {
             
             let weekday = firstDateInSeciton.weekday
             
-            guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(of: firstDateInSeciton)) else { return nil }
+            guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(of: firstDateInSeciton) - 1) else { return nil }
             
             let calendar = Calendar.current
             var components = calendar.dateComponents([.month, .day], from: firstDateInSeciton)

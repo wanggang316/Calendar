@@ -258,8 +258,12 @@ extension CalendarView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let firstDateOfMonth = Date.firstDate(inSection: indexPath.section, from: self.fromDate)
+        
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! CalendarMonthHeaderView
+            view.date = firstDateOfMonth
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as! CalendarMonthFooterView
@@ -279,7 +283,11 @@ extension CalendarView: UICollectionViewDelegate {
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected: \(indexPath)")
+        
+        let date = Date.date(at: indexPath, from: self.fromDate)
+        if let date = date {
+            print("selected indexpath: \(indexPath), date: \(date)")
+        }
     }
 }
 
