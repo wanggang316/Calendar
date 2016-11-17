@@ -14,82 +14,88 @@ import Foundation
  */
 public extension Date {
     
+    public static var gregorianCalendar: Calendar {
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        return calendar
+    }
+    
     public var era: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.era, from: self)
     }
     
     public var year: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.year, from: self)
     }
     
     public var month: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.month, from: self)
     }
     public var day: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.day, from: self)
     }
     
     public var weekday: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.weekday, from: self)
     }
     
     public var hour: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.hour, from: self)
     }
     
     public var minute: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.minute, from: self)
     }
     
     public var second: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.second, from: self)
     }
     
     public var weekdayOrdinal: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.weekdayOrdinal, from: self)
     }
     
     public var quarter: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.quarter, from: self)
     }
     
     public var weekOfMonth: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.weekOfMonth, from: self)
     }
     
     public var weekOfYear: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.weekOfYear, from: self)
     }
     
     public var yearForWeekOfYear: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.yearForWeekOfYear, from: self)
     }
     
     public var nanosecond: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.nanosecond, from: self)
     }
     
     public var calendar: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.calendar, from: self)
     }
     
     public var timeZone: Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.component(.timeZone, from: self)
     }
 }
@@ -104,7 +110,7 @@ public extension Date {
      - paramter month: `Date` type
      */
     public func firstDateOfMonth() -> Date {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.day = 1
         return calendar.date(from: components)!
@@ -117,7 +123,7 @@ public extension Date {
      - returns:
      */
     public func lastDateOfMonth() -> Date {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.month = components.month! + 1
         components.day = 0
@@ -132,7 +138,7 @@ public extension Date {
      - returns: ...
      */
     public func lastDateOfWeekday() -> Date {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         var components = calendar.dateComponents([.year, .month, .day, .weekday], from: self)
         components.day = components.day! - self.weekday + 1
         return calendar.date(from: components)!
@@ -150,7 +156,7 @@ public extension Date {
     }
     
     public func isWeekend() -> Bool {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let weekdayRange = calendar.maximumRange(of: .weekday)
         let weekday = calendar.component(.weekday, from: self)
         
@@ -176,7 +182,7 @@ public extension Date {
     
     
     public func compare(to date: Date, granularity: Calendar.Component) -> ComparisonResult {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         return calendar.compare(self, to: date, toGranularity: granularity)
     }
 }
@@ -187,7 +193,7 @@ public extension Date {
  */
 public extension Date {
     public static func days(of month: Date) -> Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let range = calendar.range(of: .day, in: .month, for: month)
         return range?.count ?? 0
     }
@@ -195,20 +201,20 @@ public extension Date {
     public static func days(from fromMonth: Date, to toMonth: Date) -> Int {
         let firstDate = fromMonth.firstDateOfMonth()
         let lastDate = toMonth.lastDateOfMonth()
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let components = calendar.dateComponents([.day], from: firstDate, to: lastDate)
         return components.day! + 1
     }
     
     public static func nights(from fromDate: Date, to toDate: Date) -> Int {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let components = calendar.dateComponents([.day], from: fromDate, to: toDate)
         return components.day!
     }
     
     public static func months(from fromMonth: Date, to toMonth: Date) -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.month], from: fromMonth, to: toMonth)
+        let calendar = Date.gregorianCalendar
+        let components = calendar.dateComponents([.month], from: fromMonth.firstDateOfMonth(), to: toMonth.lastDateOfMonth())
         return components.month! + 1
     }
 }
@@ -220,7 +226,7 @@ public extension Date {
 extension Date {
     
     static func firstDate(inSection section: Int, from date: Date) -> Date? {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         var components = DateComponents()
         components.month = section
         return calendar.date(byAdding: components, to: date.firstDateOfMonth())
@@ -236,7 +242,7 @@ extension Date {
             
             guard indexPath.row >= (weekday - 1) && indexPath.row <= (weekday - 1 + Date.days(of: firstDateInSeciton) - 1) else { return nil }
             
-            let calendar = Calendar.current
+            let calendar = Date.gregorianCalendar
             var components = calendar.dateComponents([.month, .day], from: firstDateInSeciton)
             components.day = indexPath.row - (weekday - 1)
             components.month = indexPath.section

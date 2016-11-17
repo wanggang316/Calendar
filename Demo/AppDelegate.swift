@@ -17,6 +17,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // UINavigationBar.appearance().isTranslucent = false
+        
+        let date = Date()
+        var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        calendar.timeZone = TimeZone(identifier: "GMT")!
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+    
+        components.year = 2017
+        components.month = 2
+        components.day = 1
+        
+        print("\(components.year!)-\(components.month!)-\(components.day!) \(components.hour!):\(components.minute!):\(components.second!)")
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "GMT")
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
+        let dateString = formatter.string(from: date)
+        
+        
+
+        
         return true
     }
 

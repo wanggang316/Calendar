@@ -15,20 +15,20 @@ open class CalendarView: UIView {
     // MARK: - public properties
     
     open var fromDate: Date = {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let date = Date()
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         components.year = 2016
         components.month = 3
         components.day = 14
         return calendar.date(from: components)!
-    }()// Date(timeIntervalSinceNow: -60 * 60 * 24 * 30 * 2)
+    }()
     open var toDate: Date = {
-        let calendar = Calendar.current
+        let calendar = Date.gregorianCalendar
         let date = Date()
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
-        components.year = 2017
-        components.month = 2
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        components.year = 2016
+        components.month = 7
         components.day = 1
         return calendar.date(from: components)!
     }()
