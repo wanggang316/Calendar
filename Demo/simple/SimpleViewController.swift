@@ -26,10 +26,18 @@ class SimpleViewController: UIViewController {
         self.view.backgroundColor = UIColor.groupTableViewBackground
         self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.view.addSubview(self.calendarView)
+        
+        let date = Date.distantPast
+        let date1 = Date.distantFuture
+        let gt = date < date1
+        
+        print(gt)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+
     
 }
