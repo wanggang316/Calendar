@@ -16,7 +16,7 @@ import Foundation
  */
 extension Date {
     
-    static func firstDate(inSection section: Int, from date: Date) -> Date? {
+    static func firstDate(in section: Int, from date: Date) -> Date? {
         let calendar = Date.gregorianCalendar
         var components = DateComponents()
         components.month = section
@@ -25,7 +25,7 @@ extension Date {
     
     static func date(at indexPath: IndexPath, from date: Date) -> Date? {
         
-        let firstDateInSeciton = Date.firstDate(inSection: indexPath.section, from: date)
+        let firstDateInSeciton = Date.firstDate(in: indexPath.section, from: date)
         
         if let firstDateInSeciton = firstDateInSeciton {
             
@@ -50,5 +50,21 @@ extension Date {
         let section = (date.year - fromDate.year) * 12 + date.month - fromDate.month
         let index = firstDateOfMonth.weekday + date.day - 2
         return IndexPath(item: index, section: section)
+    }
+    
+    
+    // MARK: - count
+    static func numberOfItems(in section: Int, from date: Date) -> Int {
+        let firstDateInSection = Date.firstDate(in: section, from: date)
+        if let firstDateInSection = firstDateInSection {
+            let weekdayIndex = firstDateInSection.weekday - 1
+            
+            let lastDateOfMonth = firstDateInSection.lastDateOfMonth()
+            let lastDateWeekdayIndex = lastDateOfMonth.weekday
+            
+            let count = weekdayIndex + Date.days(of: firstDateInSection) + 7 - lastDateWeekdayIndex
+            return count
+        }
+        return 0
     }
 }

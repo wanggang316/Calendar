@@ -235,17 +235,7 @@ extension CalendarView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let firstDateInSection = Date.firstDate(inSection: section, from: self.fromDate)
-        if let firstDateInSection = firstDateInSection {
-            let weekdayIndex = firstDateInSection.weekday - 1
-            
-            let lastDateOfMonth = firstDateInSection.lastDateOfMonth()
-            let lastDateWeekdayIndex = lastDateOfMonth.weekday
-            
-            let count = weekdayIndex + Date.days(of: firstDateInSection) + 7 - lastDateWeekdayIndex
-            return count
-        }
-        return 0
+        return Date.numberOfItems(in: section, from: self.fromDate)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -254,9 +244,7 @@ extension CalendarView: UICollectionViewDataSource {
         let date = Date.date(at: indexPath, from: self.fromDate)
         if let date = date {
             //print("\(indexPath): \(date)")
-            
             cell.isGray = date.lt(self.fromDate, granularity: .day) || date.gt(self.toDate, granularity: .day)
-            
         }
         cell.date = date
         cell.backgroundColor = UIColor.yellow
@@ -265,7 +253,7 @@ extension CalendarView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let firstDateOfMonth = Date.firstDate(inSection: indexPath.section, from: self.fromDate)
+        let firstDateOfMonth = Date.firstDate(in: indexPath.section, from: self.fromDate)
         
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! CalendarMonthHeaderView

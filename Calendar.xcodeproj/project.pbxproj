@@ -101,8 +101,8 @@
 			children = (
 				3318E8431DDE978F0053FF23 /* Date+Basic.swift */,
 				3318E8451DDE97A00053FF23 /* Date+Compare.swift */,
-				3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */,
 				3318E8491DDE97F90053FF23 /* Date+Count.swift */,
+				3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
