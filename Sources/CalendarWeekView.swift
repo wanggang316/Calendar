@@ -28,13 +28,7 @@ open class CalendarWeekView: UIView {
         self.contentView.backgroundColor = UIColor(colorLiteralRed: 0.1, green: 0.5, blue: 0.8, alpha: 0.5)
         self.addSubview(self.contentView)
         
-        
-        /// weekday symbols
-        let calendar = Date.gregorianCalendar
-        let formatter = DateFormatter()
-        formatter.calendar = calendar
-        
-        let weekdaySymbols = formatter.veryShortWeekdaySymbols
+        let weekdaySymbols = Date.formatter.veryShortWeekdaySymbols
         
         for (index, element) in weekdaySymbols!.enumerated() {
             let label = UILabel()

@@ -16,6 +16,14 @@ public extension Date {
         return calendar
     }
     
+    /// standard formatter
+    public static var formatter: DateFormatter {
+        let calendar = Date.gregorianCalendar
+        let formatter = DateFormatter()
+        formatter.calendar = calendar
+        return formatter
+    }
+    
     public var era: Int {
         let calendar = Date.gregorianCalendar
         return calendar.component(.era, from: self)
@@ -139,5 +147,5 @@ public extension Date {
         components.day = components.day! - self.weekday + 1
         return calendar.date(from: components)!
     }
-    
 }
+
