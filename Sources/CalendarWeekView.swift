@@ -27,6 +27,25 @@ open class CalendarWeekView: UIView {
         self.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.4, blue: 0.5, alpha: 0.7)
         self.contentView.backgroundColor = UIColor(colorLiteralRed: 0.1, green: 0.5, blue: 0.8, alpha: 0.5)
         self.addSubview(self.contentView)
+        
+        
+        /// weekday symbols
+        let calendar = Date.gregorianCalendar
+        let formatter = DateFormatter()
+        formatter.calendar = calendar
+        
+        let weekdaySymbols = formatter.veryShortWeekdaySymbols
+        
+        for (index, element) in weekdaySymbols!.enumerated() {
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: 15)
+            label.textColor = UIColor.darkGray
+            label.textAlignment = .center
+            label.tag = 109001 + index
+            label.text = element
+            self.contentView.addSubview(label)
+        }
+        
     }
     
     public convenience init() {
@@ -48,6 +67,14 @@ open class CalendarWeekView: UIView {
                                             height: self.frame.height - contentInset.top - contentInset.bottom)
         } else {
             self.contentView.frame = self.bounds
+        }
+        
+        for i in 0...7 {
+            let label = self.viewWithTag(109001 + i)
+            if let label = label {
+                let width: CGFloat = self.contentView.frame.width / 7
+                label.frame = CGRect(x: width * CGFloat(i), y: 0, width: width, height: self.contentView.frame.height)
+            }
         }
     }
 
