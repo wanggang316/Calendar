@@ -8,9 +8,6 @@
 
 import Foundation
 
-/**
- basic extension
- */
 public extension Date {
     
     public static var gregorianCalendar: Calendar {
@@ -100,7 +97,7 @@ public extension Date {
 }
 
 /**
- convince get
+ convince getters
  */
 public extension Date {
     /**

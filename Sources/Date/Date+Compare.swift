@@ -43,9 +43,42 @@ public extension Date {
         return self.compare(to: date, granularity: .year) == .orderedSame
     }
     
+    /// Greater than
+    public func gt(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) == .orderedDescending
+    }
+    
+    /// Greater than or equal
+    public func ge(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) != .orderedAscending
+    }
+    
+    /// Less than
+    public func lt(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) == .orderedAscending
+    }
+    
+    /// Less than or equal
+    public func le(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) != .orderedDescending
+    }
+    
+    /// Equal
+    public func eq(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) == .orderedSame
+    }
+    
+    /// Not equal
+    public func ne(_ date: Date,  granularity: Calendar.Component) -> Bool {
+        return self.compare(to: date, granularity: granularity) != .orderedSame
+    }
+    
     
     public func compare(to date: Date, granularity: Calendar.Component) -> ComparisonResult {
         let calendar = Date.gregorianCalendar
         return calendar.compare(self, to: date, toGranularity: granularity)
     }
+    
+    
+    
 }

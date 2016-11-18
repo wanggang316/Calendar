@@ -163,6 +163,9 @@ open class CalendarView: UIView {
         self.addSubview(self.collectionView)
         
         self.addSubview(self.weekView)
+        
+        let result = self.fromDate.gt(self.toDate, granularity: .day)
+        
     }
     
     public convenience init() {
@@ -250,7 +253,10 @@ extension CalendarView: UICollectionViewDataSource {
         
         let date = Date.date(at: indexPath, from: self.fromDate)
         if let date = date {
-            print("\(indexPath): \(date)")
+            //print("\(indexPath): \(date)")
+            
+            cell.isGray = date.lt(self.fromDate, granularity: .day) || date.gt(self.toDate, granularity: .day)
+            
         }
         cell.date = date
         cell.backgroundColor = UIColor.yellow

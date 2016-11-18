@@ -23,6 +23,16 @@ class SimpleDateCell: UICollectionViewCell {
         }
     }
     
+    var isGray: Bool = false {
+        didSet {
+            if isGray {
+                self.titleLabel.textColor = UIColor.lightGray
+            } else {
+                self.titleLabel.textColor = UIColor.darkGray
+            }
+        }
+    }
+    
     var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
