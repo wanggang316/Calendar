@@ -7,28 +7,16 @@
 //
 
 import UIKit
+import Calendar
 
-class SimpleDateCell: UICollectionViewCell {
+class SimpleDateCell: CalendarDayCell {
     
-    var date: Date? {
+    var title: String? {
         didSet {
-            if let date = date {
-                self.titleLabel.text = String(date.day)
-                if date.isToday() {
-                    self.titleLabel.text = "Today"
-                }
+            if let title = title {
+                self.titleLabel.text = title
             } else {
                 self.titleLabel.text = nil
-            }
-        }
-    }
-    
-    var isGray: Bool = false {
-        didSet {
-            if isGray {
-                self.titleLabel.textColor = UIColor.lightGray
-            } else {
-                self.titleLabel.textColor = UIColor.darkGray
             }
         }
     }
@@ -38,12 +26,13 @@ class SimpleDateCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = UIColor.darkGray
         label.textAlignment = .center
+        label.backgroundColor = UIColor.init(colorLiteralRed: 0.7, green: 0.3, blue: 0.1, alpha: 0.3)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(self.titleLabel)
+        self.addSubview(titleLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,4 +43,7 @@ class SimpleDateCell: UICollectionViewCell {
         super.layoutSubviews()
         self.titleLabel.frame = self.bounds
     }
+    
+    
+    
 }

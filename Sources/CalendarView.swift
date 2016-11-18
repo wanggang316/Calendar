@@ -8,6 +8,14 @@
 
 import UIKit
 
+public protocol CalendarDataSource: NSObjectProtocol {
+    ///
+    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) -> CalendarDayCell
+    
+}
+
+
+
 public typealias CalendarDateCell = UICollectionViewCell
 
 open class CalendarView: UIView {
@@ -38,6 +46,10 @@ open class CalendarView: UIView {
             self.layoutSubviews()
         }
     }
+    
+    weak open var dataSource: CalendarDataSource?
+    
+    //weak open var delegate: UITableViewDelegate?
     
     /// The calendar scroll view content inset
     open var contentInset: UIEdgeInsets = UIEdgeInsets.zero
@@ -99,6 +111,12 @@ open class CalendarView: UIView {
         self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
     }
     
+    
+    open func dequeueReusableCell(withIdentifier identifier: String, for date: Date) -> CalendarDayCell {
+        let indexPath = Date.indexPath(forDate: date, from: self.fromDate)
+        return self.collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for:indexPath!) as! CalendarDayCell
+    }
+    
     /** Discard the dataSource and delegate data and requery as necessary. */
     public func reloadData() {
         self.collectionView.reloadData()
@@ -155,7 +173,6 @@ open class CalendarView: UIView {
         
         self.backgroundColor = UIColor.groupTableViewBackground
         
-        self.collectionView.register(SimpleDateCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView.register(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
         self.collectionView.register(CalendarMonthFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         self.collectionView.dataSource = self
@@ -163,9 +180,6 @@ open class CalendarView: UIView {
         self.addSubview(self.collectionView)
         
         self.addSubview(self.weekView)
-        
-        let result = self.fromDate.gt(self.toDate, granularity: .day)
-        
     }
     
     public convenience init() {
@@ -239,16 +253,17 @@ extension CalendarView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SimpleDateCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CalendarDayCell
+        cell.cellStyle = .default
         let date = Date.date(at: indexPath, from: self.fromDate)
-        if let date = date {
-            //print("\(indexPath): \(date)")
-            cell.isGray = date.lt(self.fromDate, granularity: .day) || date.gt(self.toDate, granularity: .day)
-        }
         cell.date = date
         cell.backgroundColor = UIColor.yellow
-        return cell
+        return self.dataSource?.calendarView(self, cell: cell, forDay: date) ?? cell
+
+        //if let date = date {
+            //print("\(indexPath): \(date)")
+            //cell.isGray = date.lt(self.fromDate, granularity: .day) || date.gt(self.toDate, granularity: .day)
+        //}
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

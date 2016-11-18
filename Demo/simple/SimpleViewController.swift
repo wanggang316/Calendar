@@ -18,7 +18,7 @@ class SimpleViewController: UIViewController {
         cal.contentInset = UIEdgeInsets(top: 64 + 10, left: 10, bottom: 10, right: 10)
         cal.minimumWeekAndDateItemSpacing = 10
         cal.weekViewHeight = 50
-        //cal.register(SimpleDateCell.self, forCellWithReuseIdentifier: "cell")
+        cal.register(SimpleDateCell.self, forCellWithReuseIdentifier: "cell")
         return cal
     }()
 
@@ -26,6 +26,7 @@ class SimpleViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.groupTableViewBackground
         self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.calendarView.dataSource = self
         self.view.addSubview(self.calendarView)
         
         let date = Date.distantPast
@@ -39,6 +40,28 @@ class SimpleViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+}
 
+extension SimpleViewController: CalendarDataSource {
+    
+    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) -> CalendarDayCell {
+        let scell = cell as! SimpleDateCell
+        
+        if let date = date {
+            if date.isToday() {
+                scell.textLabel?.text = "Today"
+                scell.textLabel?.textColor = UIColor.darkGray
+            } else if (date.lt(calendarView.fromDate, granularity: .day) || date.gt(calendarView.toDate, granularity: .day)) {
+                scell.textLabel?.text = String(date.day)
+                scell.textLabel?.textColor = UIColor.lightGray
+            } else {
+                scell.textLabel?.text = String(date.day)
+                scell.textLabel?.textColor = UIColor.darkGray
+            }
+        }
+        
+        //scell.title = "-----"
+        return scell
+    }
     
 }

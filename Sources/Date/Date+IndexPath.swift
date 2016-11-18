@@ -8,9 +8,6 @@
 
 import Foundation
 
-
-
-
 /**
  extension for IndexPath
  */
