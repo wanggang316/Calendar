@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3318E83F1DDDB3C00053FF23 /* SimpleDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */; };
+		3318E8441DDE978F0053FF23 /* Date+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8431DDE978F0053FF23 /* Date+Basic.swift */; };
+		3318E8461DDE97A00053FF23 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8451DDE97A00053FF23 /* Date+Compare.swift */; };
+		3318E8481DDE97D80053FF23 /* Date+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */; };
+		3318E84A1DDE97F90053FF23 /* Date+Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8491DDE97F90053FF23 /* Date+Count.swift */; };
 		331DEACC1DDACD0400ADAF33 /* Calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 331DEAC11DDACD0400ADAF33 /* Calendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DEAC21DDACD0400ADAF33 /* CalendarView.swift */; };
 		331DEACE1DDACD0400ADAF33 /* CalendarWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DEAC31DDACD0400ADAF33 /* CalendarWeekView.swift */; };
@@ -22,7 +26,6 @@
 		337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */; };
 		337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */; };
 		337DD93D1DDC609900D9CFCE /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */; };
-		337DD9411DDC7EEE00D9CFCE /* DateCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */; };
 		338748E71DDADCAB00FB3FA5 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDateCell.swift; sourceTree = "<group>"; };
+		3318E8431DDE978F0053FF23 /* Date+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Basic.swift"; sourceTree = "<group>"; };
+		3318E8451DDE97A00053FF23 /* Date+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
+		3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+IndexPath.swift"; sourceTree = "<group>"; };
+		3318E8491DDE97F90053FF23 /* Date+Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Count.swift"; sourceTree = "<group>"; };
 		331DEAAC1DDACC3C00ADAF33 /* Calendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Calendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		331DEAC11DDACD0400ADAF33 /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
 		331DEAC21DDACD0400ADAF33 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -67,7 +74,6 @@
 		337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
-		337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCenter.swift; sourceTree = "<group>"; };
 		338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3318E8401DDE96ED0053FF23 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				3318E8431DDE978F0053FF23 /* Date+Basic.swift */,
+				3318E8451DDE97A00053FF23 /* Date+Compare.swift */,
+				3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */,
+				3318E8491DDE97F90053FF23 /* Date+Count.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
 		331DEAA21DDACC3C00ADAF33 = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +134,7 @@
 				331DEAC31DDACD0400ADAF33 /* CalendarWeekView.swift */,
 				337DD93C1DDC609900D9CFCE /* CalendarMonthView.swift */,
 				337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */,
-				337DD9401DDC7EEE00D9CFCE /* DateCenter.swift */,
+				3318E8401DDE96ED0053FF23 /* Date */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -274,8 +291,11 @@
 			files = (
 				337DD93D1DDC609900D9CFCE /* CalendarMonthView.swift in Sources */,
 				331DEACE1DDACD0400ADAF33 /* CalendarWeekView.swift in Sources */,
-				337DD9411DDC7EEE00D9CFCE /* DateCenter.swift in Sources */,
+				3318E84A1DDE97F90053FF23 /* Date+Count.swift in Sources */,
+				3318E8441DDE978F0053FF23 /* Date+Basic.swift in Sources */,
+				3318E8461DDE97A00053FF23 /* Date+Compare.swift in Sources */,
 				331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */,
+				3318E8481DDE97D80053FF23 /* Date+IndexPath.swift in Sources */,
 				3318E83F1DDDB3C00053FF23 /* SimpleDateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

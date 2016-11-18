@@ -14,6 +14,9 @@ class SimpleDateCell: UICollectionViewCell {
         didSet {
             if let date = date {
                 self.titleLabel.text = String(date.day)
+                if date.isToday() {
+                    self.titleLabel.text = "Today"
+                }
             } else {
                 self.titleLabel.text = nil
             }

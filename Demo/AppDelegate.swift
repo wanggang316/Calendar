@@ -35,9 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dateString = formatter.string(from: date)
         
-        
-
-        
         return true
     }
 

@@ -19,7 +19,7 @@ open class CalendarView: UIView {
         let date = Date()
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         components.year = 2016
-        components.month = 3
+        components.month = 9
         components.day = 14
         return calendar.date(from: components)!
     }()
@@ -27,8 +27,8 @@ open class CalendarView: UIView {
         let calendar = Date.gregorianCalendar
         let date = Date()
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        components.year = 2016
-        components.month = 7
+        components.year = 2017
+        components.month = 3
         components.day = 1
         return calendar.date(from: components)!
     }()
