@@ -10,15 +10,23 @@ import UIKit
 
 open class CalendarWeekView: UIView {
     
-    //
-    open var contentInset: UIEdgeInsets? {
-        didSet {
-            
-        }
-    }
+    weak var delegate: CalendarWeekViewDelegate?
+    
+    open var contentInset: UIEdgeInsets?
     
     // MARK: - UI
     public var contentView: UIView = UIView()
+    
+    
+    // MARK: 
+    func reloadWeekView() {
+        for i in 0...7 {
+            let label = self.viewWithTag(109001 + i)
+            if let label = label as? UILabel {
+                self.delegate?.calendarWeekView(self, weekdayView: label, forWeekday: i)
+            }
+        }
+    }
     
 
     // MARK: - initializer
@@ -71,5 +79,8 @@ open class CalendarWeekView: UIView {
             }
         }
     }
+}
 
+protocol CalendarWeekViewDelegate: NSObjectProtocol {
+    func calendarWeekView(_ weekView: CalendarWeekView, weekdayView: UILabel, forWeekday weekday: Int)
 }

@@ -49,7 +49,7 @@ public protocol CalendarDelegate: NSObjectProtocol {
      - parameter calendarView: self
      - parameter date: the date will be select
      */
-    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date) -> Bool
+    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date?) -> Bool
     
     /**
      Correspond the selection event of the calendarView with current `date`.
@@ -57,7 +57,7 @@ public protocol CalendarDelegate: NSObjectProtocol {
      - parameter calendarView: self
      - parameter date: the selected date
      */
-    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell)
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date?, of cell: CalendarDayCell)
     
     /**
      ScrollView delegate methods
@@ -78,8 +78,8 @@ public extension CalendarDataSource {
 }
 
 public extension CalendarDelegate {
-    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date) -> Bool { return false }
-    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell) {}
+    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date?) -> Bool { return false }
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date?, of cell: CalendarDayCell) {}
     func scrollViewDidScroll(_ scrollView: UIScrollView) {}
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {}
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {}
@@ -119,14 +119,24 @@ open class CalendarView: UIView {
     }
     
     weak open var dataSource: CalendarDataSource?
+    weak open var delegate: CalendarDelegate?
     
     //weak open var delegate: UITableViewDelegate?
     
     /// The calendar scroll view content inset
     open var contentInset: UIEdgeInsets = UIEdgeInsets.zero
     
+    /// The calendar scroll view content offset
+    open var contentOffset: CGPoint?
+    
     /// week view height
     open var weekViewHeight: CGFloat = 44.0
+    
+    /// month header view height
+    open var monthHeaderViewHeight: CGFloat = 44.0
+    
+    /// month footer view height 
+    open var monthFooterViewHeight: CGFloat = 0.0
     
     /// The spacing from week view to date item
     open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
@@ -183,11 +193,6 @@ open class CalendarView: UIView {
     }
     
     
-    open func dequeueReusableCell(withIdentifier identifier: String, for date: Date) -> CalendarDayCell {
-        let indexPath = Date.indexPath(forDate: date, from: self.fromDate)
-        return self.collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for:indexPath!) as! CalendarDayCell
-    }
-    
     /** Discard the dataSource and delegate data and requery as necessary. */
     public func reloadData() {
         self.collectionView.reloadData()
@@ -201,7 +206,10 @@ open class CalendarView: UIView {
      - returns: The corresponding date cell
      */
     public func cellAt(date: Date) -> CalendarDateCell? {
-        return nil
+        guard let indexPath =  Date.indexPath(forDate: date, from: self.fromDate) else {
+            return nil
+        }
+        return self.collectionView.cellForItem(at: indexPath)
     }
     
     /**
@@ -250,6 +258,7 @@ open class CalendarView: UIView {
         self.collectionView.delegate = self
         self.addSubview(self.collectionView)
         
+        self.weekView.delegate = self
         self.addSubview(self.weekView)
     }
     
@@ -347,9 +356,11 @@ extension CalendarView: UICollectionViewDataSource {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! CalendarMonthHeaderView
             view.date = firstDateOfMonth
+            self.dataSource?.calendarView(self, monthHeaderView: view, forMonth: firstDateOfMonth)
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as! CalendarMonthFooterView
+            self.dataSource?.calendarView(self, monthFooterView: view, forMonth: firstDateOfMonth)
             return view
         }
     }
@@ -358,11 +369,8 @@ extension CalendarView: UICollectionViewDataSource {
 
 extension CalendarView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        return true
+        let date = Date.date(at: indexPath, from: self.fromDate)
+        return self.delegate?.calendarView(self, shouldSelectDate: date) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -371,6 +379,30 @@ extension CalendarView: UICollectionViewDelegate {
         if let date = date {
             print("selected indexpath: \(indexPath), date: \(date)")
         }
+        if let cell = collectionView.cellForItem(at: indexPath) as? CalendarDayCell {
+            self.delegate?.calendarView(self, didSelectedDate: date, of: cell)
+        }
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.contentOffset = CGPoint(x: scrollView.contentOffset.x + self.contentInset.left, y: scrollView.contentOffset.y + self.contentInset.top)
+        self.delegate?.scrollViewDidScroll(scrollView)
+    }
+    
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewWillBeginDragging(scrollView)
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.delegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+    
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewWillBeginDragging(scrollView)
+    }
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewDidEndDecelerating(scrollView)
     }
 }
 
@@ -379,9 +411,16 @@ extension CalendarView: UICollectionViewDelegateFlowLayout {
         return self.itemSize ?? CGSize(width: 50, height: 50)
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 40)
+        return CGSize(width: collectionView.frame.width, height: self.monthHeaderViewHeight)
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 40)
+        return CGSize(width: collectionView.frame.width, height: self.monthFooterViewHeight)
+    }
+}
+
+
+extension CalendarView: CalendarWeekViewDelegate {
+    func calendarWeekView(_ weekView: CalendarWeekView, weekdayView: UILabel, forWeekday weekday: Int) {
+        self.dataSource?.calendarView(self, weekdayView: weekdayView, forWeekday: weekday)
     }
 }

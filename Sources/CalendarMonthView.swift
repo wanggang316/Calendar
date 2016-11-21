@@ -8,34 +8,54 @@
 
 import Foundation
 
+public enum CalendarMonthViewStyle : Int {
+    /// View with text label which is shown the date.
+    case `default`
+    /// No UI element in the cell, you can custom your element as you want.
+    case custom
+}
+
+
 open class CalendarMonthView: UICollectionReusableView {
 }
 
 open class CalendarMonthHeaderView: CalendarMonthView {
     
-    var date: Date? {
+    open var date: Date? {
         didSet {
-            if let date = date {
-                self.titleLabel.text = String("\(date.year) 年 \(date.month) 月")
+            if let date = date, self.style == .default, let textLabel = self.textLabel {
+                textLabel.text = String("\(date.year) 年 \(date.month) 月")
             } else {
-                self.titleLabel.text = nil
+                self.textLabel?.text = nil
             }
         }
     }
     
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.darkGray
-        label.textAlignment = .left
-        return label
-    }()
     
+    public var style: CalendarMonthViewStyle = .`default` {
+        
+        didSet {
+            switch style {
+            case .default:
+                if self.textLabel == nil {
+                    let label = UILabel()
+                    label.font = UIFont.systemFont(ofSize: 20)
+                    label.textColor = UIColor.darkGray
+                    label.textAlignment = .center
+                    self.textLabel = label
+                    self.addSubview(self.textLabel!)
+                }
+            case .custom:
+                self.textLabel = nil
+            }
+        }
+    }
+    
+    open var textLabel: UILabel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.red
-        self.addSubview(self.titleLabel)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -44,7 +64,9 @@ open class CalendarMonthHeaderView: CalendarMonthView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        self.titleLabel.frame = self.bounds
+        if style == .`default` {
+            self.textLabel?.frame = self.bounds
+        }
     }
 }
 
