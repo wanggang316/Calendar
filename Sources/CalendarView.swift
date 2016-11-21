@@ -9,9 +9,64 @@
 import UIKit
 
 public protocol CalendarDataSource: NSObjectProtocol {
-    ///
+    
+    /**
+     This method is used for configure the day cell with current `date`.
+     Implementers can setup `date` to cell and custom appearance for cell by this method.
+     
+     - parameter calendarView: self
+     - parameter cell: current reuse cell
+     - parameter date: current date
+     */
     func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) -> CalendarDayCell
     
+    /**
+     If you registe a section header or footer, you should configure them by them two methods, calendar will provide current `year` and `month` for you.
+     
+     - parameter calendarView: self
+     - parameter monthHeaderView or monthFooterView:  current reuse month header or footer view
+     - parameter date: month is present by date, the date is the first date of the month.
+     */
+    func calendarView(_ calendarView: CalendarView, monthHeaderView: CalendarMonthHeaderView, forMonth date: Date?) -> CalendarMonthHeaderView
+    func calendarView(_ calendarView: CalendarView, monthFooterView: CalendarMonthFooterView, forMonth date: Date?) -> CalendarMonthFooterView
+    
+    /**
+     This method is used for configure the cell of the week view with the `weekday`
+     
+     - parameter calendarView: self
+     - parameter weekdayView: the cell contains the header weekday view, like monday
+     - parameter weekday: weekday index, from 0~6, sunday is 0, saturday is 6
+     */
+    func calendarView(_ calendarView: CalendarView, weekdayView: UILabel, forWeekday weekday: Int)
+}
+
+
+public protocol CalendarDelegate: NSObjectProtocol {
+    
+    /**
+     Return whether the date is selectable.
+     
+     - parameter calendarView: self
+     - parameter date: the date will be select
+     */
+    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date) -> Bool
+    
+    /**
+     Correspond the selection event of the calendarView with current `date`.
+     
+     - parameter calendarView: self
+     - parameter date: the selected date
+     */
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell) -> Bool
+    
+    /**
+     ScrollView delegate methods
+     */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) // any offset changes
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) // called on finger up as we are moving
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) // called when scroll view grinds to a halt
 }
 
 
