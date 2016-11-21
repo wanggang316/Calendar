@@ -18,7 +18,7 @@ public protocol CalendarDataSource: NSObjectProtocol {
      - parameter cell: current reuse cell
      - parameter date: current date
      */
-    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) -> CalendarDayCell
+    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?)
     
     /**
      If you registe a section header or footer, you should configure them by them two methods, calendar will provide current `year` and `month` for you.
@@ -27,8 +27,8 @@ public protocol CalendarDataSource: NSObjectProtocol {
      - parameter monthHeaderView or monthFooterView:  current reuse month header or footer view
      - parameter date: month is present by date, the date is the first date of the month.
      */
-    func calendarView(_ calendarView: CalendarView, monthHeaderView: CalendarMonthHeaderView, forMonth date: Date?) -> CalendarMonthHeaderView
-    func calendarView(_ calendarView: CalendarView, monthFooterView: CalendarMonthFooterView, forMonth date: Date?) -> CalendarMonthFooterView
+    func calendarView(_ calendarView: CalendarView, monthHeaderView: CalendarMonthHeaderView, forMonth date: Date?)
+    func calendarView(_ calendarView: CalendarView, monthFooterView: CalendarMonthFooterView, forMonth date: Date?)
     
     /**
      This method is used for configure the cell of the week view with the `weekday`
@@ -57,7 +57,7 @@ public protocol CalendarDelegate: NSObjectProtocol {
      - parameter calendarView: self
      - parameter date: the selected date
      */
-    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell) -> Bool
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell)
     
     /**
      ScrollView delegate methods
@@ -70,6 +70,22 @@ public protocol CalendarDelegate: NSObjectProtocol {
 }
 
 
+public extension CalendarDataSource {
+    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) {}
+    func calendarView(_ calendarView: CalendarView, monthHeaderView: CalendarMonthHeaderView, forMonth date: Date?) {}
+    func calendarView(_ calendarView: CalendarView, monthFooterView: CalendarMonthFooterView, forMonth date: Date?) {}
+    func calendarView(_ calendarView: CalendarView, weekdayView: UILabel, forWeekday weekday: Int) {}
+}
+
+public extension CalendarDelegate {
+    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date) -> Bool { return false }
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date, of cell: CalendarDayCell) {}
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {}
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {}
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {}
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {}
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {}
+}
 
 public typealias CalendarDateCell = UICollectionViewCell
 
@@ -313,7 +329,10 @@ extension CalendarView: UICollectionViewDataSource {
         let date = Date.date(at: indexPath, from: self.fromDate)
         cell.date = date
         cell.backgroundColor = UIColor.yellow
-        return self.dataSource?.calendarView(self, cell: cell, forDay: date) ?? cell
+        
+        self.dataSource?.calendarView(self, cell: cell, forDay: date)
+        
+        return cell
 
         //if let date = date {
             //print("\(indexPath): \(date)")

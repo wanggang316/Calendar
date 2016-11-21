@@ -44,7 +44,7 @@ class SimpleViewController: UIViewController {
 
 extension SimpleViewController: CalendarDataSource {
     
-    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) -> CalendarDayCell {
+    func calendarView(_ calendarView: CalendarView, cell: CalendarDayCell, forDay date: Date?) {
         let scell = cell as! SimpleDateCell
         
         if let date = date {
@@ -61,7 +61,6 @@ extension SimpleViewController: CalendarDataSource {
         }
         
         //scell.title = "-----"
-        return scell
     }
     
 }

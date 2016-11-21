@@ -20,7 +20,7 @@ public enum CalendarCellStyle : Int {
  
  Day cell provide a optional `date` property:
  - if the date is nil, it's the cell which is before the first date of month or after the last date of month,
- - if the date is not nil, it's a valid date for you to use,
+ - if the date is not nil, it's a valid date for you to use
  
  You can adjust the style or do any thing base the optional date.
  */
@@ -29,8 +29,7 @@ open class CalendarDayCell: UICollectionViewCell {
     open var date: Date? {
         didSet {
             if let date = date, self.cellStyle == .default, let textLabel = self.textLabel {
-                self.addSubview(self.textLabel!)
-                self.textLabel?.text = String(date.day)
+                textLabel.text = String(date.day)
             } else {
                 self.textLabel?.text = nil
             }
@@ -38,10 +37,6 @@ open class CalendarDayCell: UICollectionViewCell {
     }
     
     public var cellStyle: CalendarCellStyle = .`default` {
-        
-        willSet {
-            
-        }
         
         didSet {
             switch cellStyle {
