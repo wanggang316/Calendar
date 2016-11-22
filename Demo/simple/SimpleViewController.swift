@@ -18,7 +18,9 @@ class SimpleViewController: UIViewController {
         cal.contentInset = UIEdgeInsets(top: 64 + 10, left: 10, bottom: 10, right: 10)
         cal.minimumWeekAndDateItemSpacing = 10
         cal.weekViewHeight = 50
-        cal.register(SimpleDateCell.self, forCellWithReuseIdentifier: "cell")
+        cal.register(SimpleDateCell.self)
+        cal.register(monthHeader: SimpleMonthHeaderView.self)
+        cal.register(monthFooter: SimpleMonthFooterView.self)
         return cal
     }()
 

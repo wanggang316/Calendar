@@ -17,9 +17,8 @@ open class CalendarWeekView: UIView {
     // MARK: - UI
     public var contentView: UIView = UIView()
     
-    
-    // MARK: 
-    func reloadWeekView() {
+    // MARK: - public functions
+    public func reloadWeekView() {
         for i in 0...7 {
             let label = self.viewWithTag(109001 + i)
             if let label = label as? UILabel {
@@ -27,7 +26,6 @@ open class CalendarWeekView: UIView {
             }
         }
     }
-    
 
     // MARK: - initializer
     public override init(frame: CGRect) {

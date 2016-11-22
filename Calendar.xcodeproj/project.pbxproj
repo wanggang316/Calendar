@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33033F9E1DE46870001A2788 /* SimpleMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33033F9C1DE4686A001A2788 /* SimpleMonthHeaderView.swift */; };
+		33033FA11DE46890001A2788 /* SimpleMonthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33033F9F1DE4688D001A2788 /* SimpleMonthFooterView.swift */; };
 		3318E8441DDE978F0053FF23 /* Date+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8431DDE978F0053FF23 /* Date+Basic.swift */; };
 		3318E8461DDE97A00053FF23 /* Date+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8451DDE97A00053FF23 /* Date+Compare.swift */; };
 		3318E8481DDE97D80053FF23 /* Date+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E8471DDE97D80053FF23 /* Date+IndexPath.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		33033F9C1DE4686A001A2788 /* SimpleMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMonthHeaderView.swift; sourceTree = "<group>"; };
+		33033F9F1DE4688D001A2788 /* SimpleMonthFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMonthFooterView.swift; sourceTree = "<group>"; };
 		3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDateCell.swift; sourceTree = "<group>"; };
 		3318E8431DDE978F0053FF23 /* Date+Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Basic.swift"; sourceTree = "<group>"; };
 		3318E8451DDE97A00053FF23 /* Date+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Compare.swift"; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 			children = (
 				338748E51DDADC9900FB3FA5 /* SimpleViewController.swift */,
 				3318E83C1DDDAFF70053FF23 /* SimpleDateCell.swift */,
+				33033F9C1DE4686A001A2788 /* SimpleMonthHeaderView.swift */,
+				33033F9F1DE4688D001A2788 /* SimpleMonthFooterView.swift */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -307,11 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33033FA11DE46890001A2788 /* SimpleMonthFooterView.swift in Sources */,
 				337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */,
 				3318E84D1DDF283D0053FF23 /* SimpleDateCell.swift in Sources */,
 				338748E71DDADCAB00FB3FA5 /* SimpleViewController.swift in Sources */,
 				331DEB111DDACFDD00ADAF33 /* ViewController.swift in Sources */,
 				337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */,
+				33033F9E1DE46870001A2788 /* SimpleMonthHeaderView.swift in Sources */,
 				331DEB0F1DDACFDD00ADAF33 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

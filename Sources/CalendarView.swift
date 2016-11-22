@@ -168,8 +168,8 @@ open class CalendarView: UIView {
      - parameter cellClass: `CalendarDateCell` type
      - parameter identifier: unique identifier for cell
      */
-    public func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
-        self.collectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
+    public func register(_ cellClass: Swift.AnyClass?) {
+        self.collectionView.register(cellClass, forCellWithReuseIdentifier: "cell")
     }
     
     /**
@@ -178,18 +178,18 @@ open class CalendarView: UIView {
      - parameter cellClass: `CalendarMonthHeaderView` type
      - parameter identifier: unique identifier for header view
      */
-    public func register(monthHeader viewClass: Swift.AnyClass?, withReuseIdentifier identifier: String) {
-        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: identifier)
+    public func register(monthHeader viewClass: Swift.AnyClass?) {
+        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
     }
     
     /**
      Rigiste month footer view with a identifier.
      
-     - parameter cellClass: `CalendarMonthHeaderView` type
+     - parameter cellClass: `CalendarMonthFooterView` type
      - parameter identifier: unique identifier for footer view
      */
-    public func register(monthFooter viewClass: Swift.AnyClass?, withReuseIdentifier identifier: String) {
-        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
+    public func register(monthFooter viewClass: Swift.AnyClass?) {
+        self.collectionView.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
     }
     
     
@@ -252,8 +252,6 @@ open class CalendarView: UIView {
         
         self.backgroundColor = UIColor.groupTableViewBackground
         
-        self.collectionView.register(CalendarMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
-        self.collectionView.register(CalendarMonthFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.addSubview(self.collectionView)
@@ -355,6 +353,7 @@ extension CalendarView: UICollectionViewDataSource {
         
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! CalendarMonthHeaderView
+            view.style = .default
             view.date = firstDateOfMonth
             self.dataSource?.calendarView(self, monthHeaderView: view, forMonth: firstDateOfMonth)
             return view

@@ -31,7 +31,6 @@ open class CalendarMonthHeaderView: CalendarMonthView {
         }
     }
     
-    
     public var style: CalendarMonthViewStyle = .`default` {
         
         didSet {
@@ -53,7 +52,7 @@ open class CalendarMonthHeaderView: CalendarMonthView {
     
     open var textLabel: UILabel?
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.red
     }
@@ -72,7 +71,7 @@ open class CalendarMonthHeaderView: CalendarMonthView {
 
 open class CalendarMonthFooterView: CalendarMonthView {
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.green
     }
