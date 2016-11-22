@@ -9,7 +9,7 @@
 import UIKit
 import Calendar
 
-class SimpleMonthFooterView: CalendarMonthFooterView {
+class SimpleMonthFooterView: MonthFooterView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

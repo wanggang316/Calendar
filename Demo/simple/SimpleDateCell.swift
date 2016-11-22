@@ -9,7 +9,7 @@
 import UIKit
 import Calendar
 
-class SimpleDateCell: CalendarDayCell {
+class SimpleDateCell: DayCell {
     
     var title: String? {
         didSet {

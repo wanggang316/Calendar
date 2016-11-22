@@ -1,5 +1,5 @@
 //
-//  CalendarMonthView.swift
+//  MonthView.swift
 //  Calendar
 //
 //  Created by wanggang on 16/11/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum CalendarMonthViewStyle : Int {
+public enum MonthViewStyle : Int {
     /// View with text label which is shown the date.
     case `default`
     /// No UI element in the cell, you can custom your element as you want.
@@ -16,10 +16,10 @@ public enum CalendarMonthViewStyle : Int {
 }
 
 
-open class CalendarMonthView: UICollectionReusableView {
+open class MonthView: UICollectionReusableView {
 }
 
-open class CalendarMonthHeaderView: CalendarMonthView {
+open class MonthHeaderView: MonthView {
     
     open var date: Date? {
         didSet {
@@ -31,7 +31,7 @@ open class CalendarMonthHeaderView: CalendarMonthView {
         }
     }
     
-    public var style: CalendarMonthViewStyle = .`default` {
+    public var style: MonthViewStyle = .`default` {
         
         didSet {
             switch style {
@@ -69,7 +69,7 @@ open class CalendarMonthHeaderView: CalendarMonthView {
     }
 }
 
-open class CalendarMonthFooterView: CalendarMonthView {
+open class MonthFooterView: MonthView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

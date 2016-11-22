@@ -1,5 +1,5 @@
 //
-//  CalendarWeekView.swift
+//  WeekView.swift
 //  Calendar
 //
 //  Created by wanggang on 15/11/2016.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-open class CalendarWeekView: UIView {
+open class WeekView: UIView {
     
-    weak var delegate: CalendarWeekViewDelegate?
+    weak var delegate: WeekViewDelegate?
     
     open var contentInset: UIEdgeInsets?
     
@@ -22,7 +22,7 @@ open class CalendarWeekView: UIView {
         for i in 0...7 {
             let label = self.viewWithTag(109001 + i)
             if let label = label as? UILabel {
-                self.delegate?.calendarWeekView(self, weekdayView: label, forWeekday: i)
+                self.delegate?.weekView(self, weekdayView: label, forWeekday: i)
             }
         }
     }
@@ -79,6 +79,6 @@ open class CalendarWeekView: UIView {
     }
 }
 
-protocol CalendarWeekViewDelegate: NSObjectProtocol {
-    func calendarWeekView(_ weekView: CalendarWeekView, weekdayView: UILabel, forWeekday weekday: Int)
+protocol WeekViewDelegate: NSObjectProtocol {
+    func weekView(_ weekView: WeekView, weekdayView: UILabel, forWeekday weekday: Int)
 }

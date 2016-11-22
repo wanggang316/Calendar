@@ -1,5 +1,5 @@
 //
-//  CalendarViewCell.swift
+//  ViewCell.swift
 //  Calendar
 //
 //  Created by wanggang on 18/11/2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum CalendarCellStyle : Int {
+public enum DayCellStyle : Int {
     /// Day cell with text label which is shown the date.
     case `default`
     /// No UI element in the cell, you can custom your element as you want.
@@ -24,11 +24,11 @@ public enum CalendarCellStyle : Int {
  
  You can adjust the style or do any thing base the optional date.
  */
-open class CalendarDayCell: UICollectionViewCell {
+open class DayCell: UICollectionViewCell {
     
     open var date: Date? {
         didSet {
-            if let date = date, self.cellStyle == .default, let textLabel = self.textLabel {
+            if let date = date, self.style == .default, let textLabel = self.textLabel {
                 textLabel.text = String(date.day)
             } else {
                 self.textLabel?.text = nil
@@ -36,10 +36,10 @@ open class CalendarDayCell: UICollectionViewCell {
         }
     }
     
-    public var cellStyle: CalendarCellStyle = .`default` {
+    public var style: DayCellStyle = .`default` {
         
         didSet {
-            switch cellStyle {
+            switch style {
             case .default:
                 if self.textLabel == nil {
                     let label = UILabel()
@@ -68,7 +68,7 @@ open class CalendarDayCell: UICollectionViewCell {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        if cellStyle == .`default` {
+        if style == .`default` {
             self.textLabel?.frame = self.bounds
         }
     }

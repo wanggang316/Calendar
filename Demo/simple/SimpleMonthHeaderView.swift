@@ -9,7 +9,7 @@
 import UIKit
 import Calendar
 
-class SimpleMonthHeaderView: CalendarMonthHeaderView {
+class SimpleMonthHeaderView: MonthHeaderView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
