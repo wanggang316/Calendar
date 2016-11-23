@@ -18,6 +18,8 @@ class SimpleViewController: UIViewController {
         cal.contentInset = UIEdgeInsets(top: 64 + 10, left: 10, bottom: 10, right: 10)
         cal.minimumWeekAndDateItemSpacing = 10
         cal.weekViewHeight = 50
+        cal.monthFooterViewHeight = 20
+        
         cal.register(SimpleDateCell.self)
         cal.register(monthHeader: SimpleMonthHeaderView.self)
         cal.register(monthFooter: SimpleMonthFooterView.self)
@@ -30,12 +32,6 @@ class SimpleViewController: UIViewController {
         self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.calendarView.dataSource = self
         self.view.addSubview(self.calendarView)
-        
-        let date = Date.distantPast
-        let date1 = Date.distantFuture
-        let gt = date < date1
-        
-        print(gt)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +42,7 @@ class SimpleViewController: UIViewController {
 
 extension SimpleViewController: CalendarDataSource {
     
+    /*
     func calendarView(_ calendarView: CalendarView, cell: DayCell, forDay date: Date?) {
         let scell = cell as! SimpleDateCell
         
@@ -62,4 +59,5 @@ extension SimpleViewController: CalendarDataSource {
             }
         }
     }
+     */
 }

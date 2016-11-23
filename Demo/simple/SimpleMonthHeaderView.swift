@@ -13,6 +13,7 @@ class SimpleMonthHeaderView: MonthHeaderView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.green
     }
     
     required init?(coder aDecoder: NSCoder) {

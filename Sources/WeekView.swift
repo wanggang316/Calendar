@@ -31,7 +31,7 @@ open class WeekView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.4, blue: 0.5, alpha: 0.7)
-        self.contentView.backgroundColor = UIColor(colorLiteralRed: 0.1, green: 0.5, blue: 0.8, alpha: 0.5)
+        self.contentView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
         self.addSubview(self.contentView)
         
         let weekdaySymbols = Date.formatter.veryShortWeekdaySymbols
@@ -40,6 +40,7 @@ open class WeekView: UIView {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 15)
             label.textColor = UIColor.darkGray
+            label.backgroundColor = UIColor.magenta.withAlphaComponent(0.3)
             label.textAlignment = .center
             label.tag = 109001 + index
             label.text = element
@@ -72,8 +73,8 @@ open class WeekView: UIView {
         for i in 0...7 {
             let label = self.viewWithTag(109001 + i)
             if let label = label {
-                let width: CGFloat = self.contentView.frame.width / 7
-                label.frame = CGRect(x: width * CGFloat(i), y: 0, width: width, height: self.contentView.frame.height)
+                let width: CGFloat = (self.contentView.frame.width - 6.0) / 7.0
+                label.frame = CGRect(x: (width + 1) * CGFloat(i), y: 0, width: width, height: self.contentView.frame.height)
             }
         }
     }

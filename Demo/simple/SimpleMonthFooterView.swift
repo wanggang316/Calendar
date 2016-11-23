@@ -13,6 +13,7 @@ class SimpleMonthFooterView: MonthFooterView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.blue
     }
     
     required init?(coder aDecoder: NSCoder) {

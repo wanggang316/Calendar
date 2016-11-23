@@ -156,7 +156,7 @@ open class CalendarView: UIView {
     open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
     
     /// The line spacing
-    open var minimumLineSpacing: CGFloat = 0.0 {
+    open var minimumLineSpacing: CGFloat = 1.0 {
         didSet {
             let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
             layout?.minimumLineSpacing = minimumLineSpacing
@@ -165,7 +165,7 @@ open class CalendarView: UIView {
     }
     
     /// The inner item spacing
-    open var minimumInteritemSpacing: CGFloat = 0.0 {
+    open var minimumInteritemSpacing: CGFloat = 1.0 {
          didSet {
             let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
             layout?.minimumInteritemSpacing = minimumInteritemSpacing
@@ -251,8 +251,8 @@ open class CalendarView: UIView {
     // MARK: - UI
     private let collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
         let `self` = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.backgroundColor = UIColor.clear
         return self
@@ -266,6 +266,11 @@ open class CalendarView: UIView {
         
         self.backgroundColor = UIColor.groupTableViewBackground
         
+        self.collectionView.register(DayCell.self, forCellWithReuseIdentifier: CalendarView.Identifier.dayCell)
+        self.collectionView.register(MonthHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: CalendarView.Identifier.monthHeaderView)
+        self.collectionView.register(MonthFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: CalendarView.Identifier.monthFooterView)
+
+
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.addSubview(self.collectionView)

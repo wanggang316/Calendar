@@ -33,6 +33,7 @@ class SimpleDateCell: DayCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(titleLabel)
+        self.backgroundColor = UIColor.purple
     }
     
     required init?(coder aDecoder: NSCoder) {

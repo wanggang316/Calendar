@@ -40,7 +40,7 @@ open class MonthHeaderView: MonthView {
                     let label = UILabel()
                     label.font = UIFont.systemFont(ofSize: 20)
                     label.textColor = UIColor.darkGray
-                    label.textAlignment = .center
+                    label.textAlignment = .left
                     self.textLabel = label
                     self.addSubview(self.textLabel!)
                 }
@@ -54,7 +54,7 @@ open class MonthHeaderView: MonthView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.orange
     }
     
     required public init?(coder aDecoder: NSCoder) {
