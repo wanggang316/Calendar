@@ -232,7 +232,13 @@ open class CalendarView: UIView {
      - parameter dates: assigned dates, array of `Date`
      */
     public func reloadItems(at dates: [Date]) {
-        
+        var result: [IndexPath] = []
+        for date in dates {
+            if let indexPath = Date.indexPath(forDate: date, from: self.fromDate) {
+                result.append(indexPath)
+            }
+        }
+        self.collectionView.reloadItems(at: result)
     }
     
     /**
@@ -241,7 +247,13 @@ open class CalendarView: UIView {
      - parameter months: assigned months, array of `Date`
      */
     public func reloadMonths(at months: [Date]) {
-        
+        var result: IndexSet = IndexSet()
+        for date in months {
+            if let indexPath = Date.indexPath(forDate: date, from: self.fromDate) {
+                result.insert(indexPath.section)
+            }
+        }
+        self.collectionView.reloadSections(result)
     }
     
     
