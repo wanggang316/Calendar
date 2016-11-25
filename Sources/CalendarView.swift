@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 public protocol CalendarDataSource: NSObjectProtocol {
     
     /**
@@ -80,7 +78,7 @@ public extension CalendarDataSource {
 }
 
 public extension CalendarDelegate {
-    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date?) -> Bool { return false }
+    func calendarView(_ calendarView: CalendarView, shouldSelectDate date: Date?) -> Bool { return true }
     func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date?, of cell: DayCell) {}
     func scrollViewDidScroll(_ scrollView: UIScrollView) {}
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {}
@@ -111,18 +109,13 @@ open class CalendarView: UIView {
         let calendar = Date.gregorianCalendar
         let date = Date()
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        components.year = 2016
-        components.month = 9
-        components.day = 14
         return calendar.date(from: components)!
     }()
     open var toDate: Date = {
         let calendar = Date.gregorianCalendar
         let date = Date()
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        components.year = 2017
-        components.month = 3
-        components.day = 1
+        components.year = components.year! + 1
         return calendar.date(from: components)!
     }()
     
@@ -151,6 +144,9 @@ open class CalendarView: UIView {
     
     /// month footer view height 
     open var monthFooterViewHeight: CGFloat = 0.0
+    
+    /// cell's width / height
+    open var cellAspectRatio: CGFloat = 1.0
     
     /// The spacing from week view to date item
     open var minimumWeekAndDateItemSpacing: CGFloat = 0.0
@@ -266,13 +262,23 @@ open class CalendarView: UIView {
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         let `self` = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.white
         return self
     }()
     
-    private let weekView: WeekView = WeekView()
+    public let weekView: WeekView = WeekView()
     
-    // MARK: - initializer
+    // MARK: - initializers
+    public convenience init(fromDate: Date, toDate: Date) {
+        self.init(frame: .zero)
+        self.fromDate = fromDate
+        self.toDate = toDate
+    }
+    
+    public convenience init() {
+        self.init(frame: .zero)
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -290,10 +296,7 @@ open class CalendarView: UIView {
         self.weekView.delegate = self
         self.addSubview(self.weekView)
     }
-    
-    public convenience init() {
-        self.init(frame: .zero)
-    }
+
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -330,7 +333,7 @@ open class CalendarView: UIView {
             /// right
             inset.right = horizontalPadding
         }
-        self.itemSize = CGSize(width: cellWidth, height: cellWidth)
+        self.itemSize = CGSize(width: cellWidth, height: cellWidth / self.cellAspectRatio)
         
         /// top
         inset.top = self.contentInset.top + self.weekViewHeight + self.minimumWeekAndDateItemSpacing
@@ -366,7 +369,6 @@ extension CalendarView: UICollectionViewDataSource {
         cell.style = .default
         let date = Date.date(at: indexPath, from: self.fromDate)
         cell.date = date
-        cell.backgroundColor = UIColor.yellow
         
         self.dataSource?.calendarView(self, cell: cell, forDay: date)
         

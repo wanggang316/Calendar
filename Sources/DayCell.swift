@@ -44,7 +44,7 @@ open class DayCell: UICollectionViewCell {
                 if self.textLabel == nil {
                     let label = UILabel()
                     label.font = UIFont.systemFont(ofSize: 15)
-                    label.textColor = UIColor.darkGray
+//                    label.textColor = UIColor.darkGray
                     label.textAlignment = .center
                     self.textLabel = label
                     self.addSubview(self.textLabel!)

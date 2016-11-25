@@ -11,14 +11,17 @@ import Calendar
 
 class SimpleViewController: UIViewController {
     
+    var selectedDate: Date?
+    
     var calendarView: CalendarView = {
         let cal = CalendarView()
         cal.minimumLineSpacing = 1
         cal.minimumInteritemSpacing = 1
-        cal.contentInset = UIEdgeInsets(top: 64 + 10, left: 10, bottom: 10, right: 10)
+        cal.contentInset = UIEdgeInsets(top: 64, left: 10, bottom: 10, right: 10)
         cal.minimumWeekAndDateItemSpacing = 10
-        cal.weekViewHeight = 50
+        cal.weekViewHeight = 30
         cal.monthFooterViewHeight = 20
+        cal.cellAspectRatio = 100.0 / 140.0
         
         cal.register(SimpleDateCell.self)
         cal.register(monthHeader: SimpleMonthHeaderView.self)
@@ -29,8 +32,25 @@ class SimpleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.groupTableViewBackground
+        
+//        let calendar = Date.gregorianCalendar
+//        let date = Date()
+//        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+//        components.year = 2016
+//        components.month = 9
+//        components.day = 14
+//        let fromDate = calendar.date(from: components)!
+//        self.calendarView.fromDate = fromDate
+//        
+//        components.year = 2017
+//        components.month = 4
+//        components.day = 1
+//        let toDate = calendar.date(from: components)!
+//        self.calendarView.toDate = toDate
+        
         self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.calendarView.dataSource = self
+        self.calendarView.delegate = self
         self.view.addSubview(self.calendarView)
     }
 
@@ -42,22 +62,36 @@ class SimpleViewController: UIViewController {
 
 extension SimpleViewController: CalendarDataSource {
     
-    /*
     func calendarView(_ calendarView: CalendarView, cell: DayCell, forDay date: Date?) {
-        let scell = cell as! SimpleDateCell
         
-        if let date = date {
-            if date.isToday() {
-                scell.textLabel?.text = "Today"
-                scell.textLabel?.textColor = UIColor.darkGray
-            } else if (date.lt(calendarView.fromDate, granularity: .day) || date.gt(calendarView.toDate, granularity: .day)) {
-                scell.textLabel?.text = String(date.day)
-                scell.textLabel?.textColor = UIColor.lightGray
+        cell.style = .custom
+        
+        if let cell = cell as? SimpleDateCell {
+            if let date = date {
+                if let selectedDate = self.selectedDate, date.eq(selectedDate, granularity: .day) {
+                    cell.state = .selected
+                } else {
+                    cell.state = .normal
+                }
             } else {
-                scell.textLabel?.text = String(date.day)
-                scell.textLabel?.textColor = UIColor.darkGray
+                cell.state = .empty
             }
         }
     }
-     */
+    
+    func calendarView(_ calendarView: CalendarView, weekdayView: UILabel, forWeekday weekday: Int) {
+        weekdayView.font = UIFont.systemFont(ofSize: 13)
+        if weekday == 0 || weekday == 6 {
+            weekdayView.textColor = UIColor.lightGray
+        }
+    }
+}
+
+extension SimpleViewController: CalendarDelegate {
+    func calendarView(_ calendarView: CalendarView, didSelectedDate date: Date?, of cell: DayCell) {
+        
+        self.selectedDate = date
+        calendarView.reloadData()
+
+    }
 }

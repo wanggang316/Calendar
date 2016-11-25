@@ -24,7 +24,11 @@ open class MonthHeaderView: MonthView {
     open var date: Date? {
         didSet {
             if let date = date, self.style == .default, let textLabel = self.textLabel {
-                textLabel.text = String("\(date.year) 年 \(date.month) 月")
+                let monthSymbols = Date.formatter.standaloneMonthSymbols
+                if let monthString = monthSymbols?[date.month - 1] {
+                    textLabel.text = monthString
+                    textLabel.sizeToFit()
+                }
             } else {
                 self.textLabel?.text = nil
             }
@@ -38,7 +42,7 @@ open class MonthHeaderView: MonthView {
             case .default:
                 if self.textLabel == nil {
                     let label = UILabel()
-                    label.font = UIFont.systemFont(ofSize: 20)
+                    label.font = UIFont.systemFont(ofSize: 16)
                     label.textColor = UIColor.darkGray
                     label.textAlignment = .left
                     self.textLabel = label
@@ -54,7 +58,6 @@ open class MonthHeaderView: MonthView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.orange
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -64,7 +67,10 @@ open class MonthHeaderView: MonthView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         if style == .`default` {
-            self.textLabel?.frame = self.bounds
+            self.textLabel?.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.textLabel?.frame.width ?? 0, height: 20))
+            if let date = self.date {
+                self.textLabel?.center = CGPoint(x: CGFloat(25 * ((date.weekday - 1) * 2 + 1)), y: self.frame.height / 2)
+            }
         }
     }
 }
@@ -73,7 +79,6 @@ open class MonthFooterView: MonthView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.green
     }
     
     required public init?(coder aDecoder: NSCoder) {
