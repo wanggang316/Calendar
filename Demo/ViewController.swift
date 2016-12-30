@@ -67,14 +67,24 @@ extension ViewController {
         
         switch cellData {
         case .showView:
-            let view = ShowView(frame: (UIApplication.shared.keyWindow?.bounds)!)
-            view.alpha = 0.0
             
-            UIApplication.shared.keyWindow?.addSubview(view)
-            UIView.animate(withDuration: 0.2, animations: {
-                view.alpha = 1.0
-            }, completion: { (finish) in
-            })
+            let path = Bundle.main.path(forResource: "calendar_dates", ofType: "json")
+            let data = NSData.init(contentsOfFile: path!)
+            
+            if let dic = try? JSONSerialization.jsonObject(with: data! as Data, options: []) as? [String: Any] {
+                let dates = PriceDates(dic)
+                print(">>>>> dates: \(dates)")
+                
+                let view = ShowView(priceDates: dates)
+                view.alpha = 0.0
+                
+                UIApplication.shared.keyWindow?.addSubview(view)
+                UIView.animate(withDuration: 0.2, animations: {
+                    view.alpha = 1.0
+                }, completion: { (finish) in
+                })
+            }
+        
             break
         case .singleSelectionGeneral:
             let controller = SingleSelectionViewController()

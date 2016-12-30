@@ -11,6 +11,17 @@ import Calendar
 
 class ShowView: UIView {
 
+    var priceDates: PriceDates?
+    
+    convenience init(priceDates: PriceDates?) {
+        self.init(frame: (UIApplication.shared.keyWindow?.bounds)!)
+        self.priceDates = priceDates
+        if let dates = self.priceDates {
+            self.calendarView.fromDate = dates.startDate
+            self.calendarView.toDate = dates.endDate
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(white: 0.0, alpha: 0.8)
