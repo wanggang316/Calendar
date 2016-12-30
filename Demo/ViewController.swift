@@ -67,6 +67,14 @@ extension ViewController {
         
         switch cellData {
         case .showView:
+            let view = ShowView(frame: (UIApplication.shared.keyWindow?.bounds)!)
+            view.alpha = 0.0
+            
+            UIApplication.shared.keyWindow?.addSubview(view)
+            UIView.animate(withDuration: 0.2, animations: {
+                view.alpha = 1.0
+            }, completion: { (finish) in
+            })
             break
         case .singleSelectionGeneral:
             let controller = SingleSelectionViewController()

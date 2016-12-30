@@ -26,9 +26,12 @@
 		337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */; };
 		337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */; };
 		337DD93D1DDC609900D9CFCE /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337DD93C1DDC609900D9CFCE /* MonthView.swift */; };
-		33DAA29F1E160866004504A5 /* ShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA29E1E160866004504A5 /* ShowView.swift */; };
-		33DAA2A51E1608C9004504A5 /* RangeSimpleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A41E1608C9004504A5 /* RangeSimpleSelectionViewController.swift */; };
-		33DAA2A71E1608DE004504A5 /* RangeComplexSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A61E1608DE004504A5 /* RangeComplexSelectionViewController.swift */; };
+		33ABC6831E161164008E4B31 /* ShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA29E1E160866004504A5 /* ShowView.swift */; };
+		33ABC6841E16116B008E4B31 /* RangeSimpleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A41E1608C9004504A5 /* RangeSimpleSelectionViewController.swift */; };
+		33ABC6851E16116B008E4B31 /* RangeComplexSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A61E1608DE004504A5 /* RangeComplexSelectionViewController.swift */; };
+		33ABC6891E161506008E4B31 /* ShowMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ABC6881E161506008E4B31 /* ShowMonthHeaderView.swift */; };
+		33ABC68B1E161517008E4B31 /* ShowMonthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ABC68A1E161517008E4B31 /* ShowMonthFooterView.swift */; };
+		33ABC68C1E16151D008E4B31 /* ShowDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ABC6861E1614F4008E4B31 /* ShowDayCell.swift */; };
 		33DAA2A81E160A94004504A5 /* SingleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A21E1608B6004504A5 /* SingleSelectionViewController.swift */; };
 		33DAA2AC1E160AD2004504A5 /* SingleSelectionDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2A91E160AD2004504A5 /* SingleSelectionDayCell.swift */; };
 		33DAA2AD1E160AD2004504A5 /* SingleSelectionMonthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA2AA1E160AD2004504A5 /* SingleSelectionMonthFooterView.swift */; };
@@ -80,6 +83,9 @@
 		337DD9341DDB385A00D9CFCE /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		337DD9381DDC4C6C00D9CFCE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		337DD93C1DDC609900D9CFCE /* MonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		33ABC6861E1614F4008E4B31 /* ShowDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDayCell.swift; sourceTree = "<group>"; };
+		33ABC6881E161506008E4B31 /* ShowMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMonthHeaderView.swift; sourceTree = "<group>"; };
+		33ABC68A1E161517008E4B31 /* ShowMonthFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMonthFooterView.swift; sourceTree = "<group>"; };
 		33DAA29E1E160866004504A5 /* ShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowView.swift; sourceTree = "<group>"; };
 		33DAA2A21E1608B6004504A5 /* SingleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectionViewController.swift; sourceTree = "<group>"; };
 		33DAA2A41E1608C9004504A5 /* RangeSimpleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSimpleSelectionViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 			isa = PBXGroup;
 			children = (
 				33DAA29E1E160866004504A5 /* ShowView.swift */,
+				33ABC6861E1614F4008E4B31 /* ShowDayCell.swift */,
+				33ABC6881E161506008E4B31 /* ShowMonthHeaderView.swift */,
+				33ABC68A1E161517008E4B31 /* ShowMonthFooterView.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -327,13 +336,10 @@
 				331DEACE1DDACD0400ADAF33 /* WeekView.swift in Sources */,
 				3318E84A1DDE97F90053FF23 /* Date+Count.swift in Sources */,
 				3318E8441DDE978F0053FF23 /* Date+Basic.swift in Sources */,
-				33DAA2A51E1608C9004504A5 /* RangeSimpleSelectionViewController.swift in Sources */,
 				3318E8461DDE97A00053FF23 /* Date+Compare.swift in Sources */,
 				331DEACD1DDACD0400ADAF33 /* CalendarView.swift in Sources */,
 				3318E84C1DDEE6690053FF23 /* DayCell.swift in Sources */,
 				3318E8481DDE97D80053FF23 /* Date+IndexPath.swift in Sources */,
-				33DAA29F1E160866004504A5 /* ShowView.swift in Sources */,
-				33DAA2A71E1608DE004504A5 /* RangeComplexSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,11 +350,17 @@
 				337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */,
 				33DAA2AE1E160AD2004504A5 /* SingleSelectionMonthHeaderView.swift in Sources */,
 				331DEB111DDACFDD00ADAF33 /* ViewController.swift in Sources */,
+				33ABC6841E16116B008E4B31 /* RangeSimpleSelectionViewController.swift in Sources */,
 				337DD9391DDC4C6C00D9CFCE /* TableViewController.swift in Sources */,
+				33ABC6851E16116B008E4B31 /* RangeComplexSelectionViewController.swift in Sources */,
 				33DAA2AD1E160AD2004504A5 /* SingleSelectionMonthFooterView.swift in Sources */,
+				33ABC68C1E16151D008E4B31 /* ShowDayCell.swift in Sources */,
 				33DAA2AC1E160AD2004504A5 /* SingleSelectionDayCell.swift in Sources */,
 				33DAA2A81E160A94004504A5 /* SingleSelectionViewController.swift in Sources */,
+				33ABC68B1E161517008E4B31 /* ShowMonthFooterView.swift in Sources */,
 				331DEB0F1DDACFDD00ADAF33 /* AppDelegate.swift in Sources */,
+				33ABC6831E161164008E4B31 /* ShowView.swift in Sources */,
+				33ABC6891E161506008E4B31 /* ShowMonthHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

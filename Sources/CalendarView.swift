@@ -116,6 +116,7 @@ open class CalendarView: UIView {
         let date = Date()
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         components.year = components.year! + 1
+        components.month = components.month! - 1
         return calendar.date(from: components)!
     }()
     
