@@ -31,8 +31,6 @@ open class WeekView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-//        self.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.4, blue: 0.5, alpha: 0.7)
-//        self.contentView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
         self.addSubview(self.contentView)
         
         let weekdaySymbols = Date.formatter.veryShortWeekdaySymbols
@@ -41,7 +39,6 @@ open class WeekView: UIView {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 15)
             label.textColor = UIColor.darkGray
-//            label.backgroundColor = UIColor.magenta.withAlphaComponent(0.3)
             label.textAlignment = .center
             label.tag = 109001 + index
             label.text = element
@@ -55,7 +52,7 @@ open class WeekView: UIView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     // MARK: - Layout

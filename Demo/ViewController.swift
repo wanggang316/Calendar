@@ -69,7 +69,7 @@ extension ViewController {
         case .showView:
             break
         case .singleSelectionGeneral:
-            let controller = SimpleViewController()
+            let controller = SingleSelectionViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         case .rangeSelectionSimple:
             break

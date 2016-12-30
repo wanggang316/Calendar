@@ -61,16 +61,13 @@ open class MonthHeaderView: MonthView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override open func layoutSubviews() {
         super.layoutSubviews()
         if style == .`default` {
             self.textLabel?.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.textLabel?.frame.width ?? 0, height: 20))
-            if let date = self.date {
-                self.textLabel?.center = CGPoint(x: CGFloat(25 * ((date.weekday - 1) * 2 + 1)), y: self.frame.height / 2)
-            }
         }
     }
 }
@@ -82,6 +79,6 @@ open class MonthFooterView: MonthView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 }

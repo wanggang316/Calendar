@@ -44,7 +44,6 @@ open class DayCell: UICollectionViewCell {
                 if self.textLabel == nil {
                     let label = UILabel()
                     label.font = UIFont.systemFont(ofSize: 15)
-//                    label.textColor = UIColor.darkGray
                     label.textAlignment = .center
                     self.textLabel = label
                     self.addSubview(self.textLabel!)
@@ -63,7 +62,7 @@ open class DayCell: UICollectionViewCell {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override open func layoutSubviews() {

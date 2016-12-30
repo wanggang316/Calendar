@@ -15,7 +15,7 @@ enum DayCellState {
     case selected
 }
 
-class SimpleDateCell: DayCell {
+class SingleSelectionDayCell: DayCell {
     
     var state: DayCellState = .normal {
         didSet {
