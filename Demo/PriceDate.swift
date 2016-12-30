@@ -13,7 +13,7 @@ struct PriceDates {
     let startDate: Date
     let endDate: Date
     
-    let dates: [PriceDate]?
+    let dates: Set<PriceDate>?
     
     init?(_ dictioanry: [String: Any]?) {
         guard let dictionary = dictioanry else { return nil }
@@ -33,10 +33,17 @@ struct PriceDates {
     }
 }
 
-struct PriceDate {
+struct PriceDate: Hashable {
+
     let date: Date
     let available: Bool
     let price: Float
+    
+    init(date: Date, available: Bool, price: Float) {
+        self.date = date
+        self.available = available
+        self.price = price
+    }
     
     init?(_ dictionary: [String: Any]?) {
         guard let dictionary = dictionary else { return nil }
@@ -52,11 +59,32 @@ struct PriceDate {
         self.price = dictionary["price"] as? Float ?? 0
     }
     
-    static func priceDates(_ jsonArray: [[String: Any]]?) -> [PriceDate]? {
+    static func priceDates(_ jsonArray: [[String: Any]]?) -> Set<PriceDate>? {
         guard let jsonArray = jsonArray else { return nil }
         
-        return jsonArray.map { element in
-            PriceDate(element)!
+        var result = Set<PriceDate>()
+        
+        for dic in jsonArray {
+            if let date = PriceDate(dic) {
+                result.update(with: date)
+            }
         }
+        return result
+    }
+    
+    public var hashValue: Int {
+        return Int(date.timeIntervalSince1970)
+    }
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: PriceDate, rhs: PriceDate) -> Bool {
+        return lhs.date.timeIntervalSince1970 == rhs.date.timeIntervalSince1970
     }
 }

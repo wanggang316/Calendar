@@ -26,6 +26,9 @@ class ShowView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(white: 0.0, alpha: 0.8)
         
+        self.calendarView.dataSource = self
+        self.calendarView.delegate = self
+        
         self.contentView.addSubview(self.titleLabel)
         self.contentView.addSubview(self.calendarView)
         self.contentView.addSubview(self.cancelButton)
@@ -91,5 +94,56 @@ class ShowView: UIView {
         button.addTarget(self, action: #selector(cancelAction), for: UIControlEvents.touchUpInside)
         return button
     }()
+    
+    // MARK: -
+    func priceDate(for date: Date) -> PriceDate? {
+        
+        guard let priceDates = self.priceDates, let dates = priceDates.dates else { return nil }
+        
+        let pd = PriceDate(date: date, available: false, price: 0)
+        if let index = dates.index(of: pd) {
+            return dates[index]
+        }
+        return nil
+    }
 
 }
+
+
+extension ShowView: CalendarDataSource {
+    func calendarView(_ calendarView: CalendarView, cell: DayCell, forDay date: Date?) {
+//        cell.style = .custom
+        
+        if let cell = cell as? ShowDayCell {
+            cell.date = date
+            if let date = date, let priceDates = self.priceDates {
+                if priceDates.startDate.ge(date, granularity: .day) || date.gt(priceDates.endDate, granularity: .day) {
+                    cell.state = .disabled
+                } else {
+                    
+                    if let priceDate = self.priceDate(for: date) {
+                        cell.price = priceDate.price
+                        cell.state = priceDate.available ? .available : .unavailable
+                    }
+                    cell.state = .available
+                }
+            } else {
+                cell.state = .empty
+            }
+        }
+    }
+    
+    func calendarView(_ calendarView: CalendarView, monthHeaderView: MonthHeaderView, forMonth date: Date?) {
+    }
+    
+    func calendarView(_ calendarView: CalendarView, monthFooterView: MonthFooterView, forMonth date: Date?) {
+    }
+    
+    func calendarView(_ calendarView: CalendarView, weekdayView: UILabel, forWeekday weekday: Int) {
+    }
+}
+
+extension ShowView: CalendarDelegate {
+    
+}
+
