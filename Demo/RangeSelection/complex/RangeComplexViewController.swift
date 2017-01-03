@@ -1,5 +1,5 @@
 //
-//  RangeSimpleSelectionViewController.swift
+//  RangeComplexViewController.swift
 //  Calendar
 //
 //  Created by wanggang on 30/12/2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RangeSimpleSelectionViewController: UIViewController {
+class RangeComplexViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

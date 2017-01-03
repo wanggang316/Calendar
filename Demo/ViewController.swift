@@ -90,8 +90,12 @@ extension ViewController {
             let controller = SingleSelectionViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         case .rangeSelectionSimple:
+            let controller = RangeSimpleViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
             break
         case .rangeSelectionComplex:
+            let controller = RangeComplexViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
             break
         }
     }

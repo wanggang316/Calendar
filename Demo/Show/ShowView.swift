@@ -77,7 +77,6 @@ class ShowView: UIView {
         cal.minimumLineSpacing = 0
         cal.minimumInteritemSpacing = 0
         cal.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-//        cal.minimumWeekAndDateItemSpacing = 10
         cal.weekViewHeight = 35
         cal.monthHeaderViewHeight = 50
         cal.monthFooterViewHeight = 14
@@ -120,8 +119,6 @@ class ShowView: UIView {
 
 extension ShowView: CalendarDataSource {
     func calendarView(_ calendarView: CalendarView, cell: DayCell, forDay date: Date?) {
-//        cell.style = .custom
-        
         if let cell = cell as? ShowDayCell {
             cell.date = date
             var price: Float? = nil
