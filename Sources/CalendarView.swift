@@ -382,7 +382,7 @@ extension CalendarView: UICollectionViewDataSource {
         
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarView.Identifier.monthHeaderView, for: indexPath) as! MonthHeaderView
-            view.style = .default
+//            view.style = .default
             view.date = firstDateOfMonth
             self.dataSource?.calendarView(self, monthHeaderView: view, forMonth: firstDateOfMonth)
             return view

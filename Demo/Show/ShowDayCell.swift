@@ -28,6 +28,7 @@ class ShowDayCell: DayCell {
                 self.backgroundView = nil
             case .disabled:
                 self.backgroundView = nil
+                self.priceLabel.text = nil
                 self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green:192.0 / 255.0, blue: 200.0 / 255.0, alpha:1.0)
             case .available:
                 self.backgroundView = nil
@@ -74,9 +75,16 @@ class ShowDayCell: DayCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         if let textLabel = self.textLabel {
-            textLabel.frame = CGRect(x: 0, y: self.contentView.center.y - textLabel.frame.height - 1, width: textLabel.frame.width, height: 15)
-            self.priceLabel.frame = CGRect(x: 0, y: self.contentView.center.y + 5, width: self.contentView.frame.width, height: 9)
-            self.backgroundImageView.frame = self.contentView.bounds
+            if let _ = self.price {
+                textLabel.frame = CGRect(x: 0, y: self.contentView.center.y - 15 - 1, width: textLabel.frame.width, height: 15)
+                self.priceLabel.frame = CGRect(x: 0, y: self.contentView.center.y + 5, width: self.contentView.frame.width, height: 9)
+                self.backgroundImageView.frame = self.contentView.bounds
+            } else {
+                textLabel.frame = self.contentView.bounds
+                self.backgroundImageView.frame = self.contentView.bounds
+            }
+        } else {
+            
         }
     }
     
@@ -92,7 +100,7 @@ class ShowDayCell: DayCell {
     
     var backgroundImageView: UIImageView {
         let imageView: UIImageView = UIImageView()
-        imageView.image = UIImage(named: "unav")
+        imageView.image = UIImage(named: "unavailable")
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         return imageView
     }

@@ -74,17 +74,25 @@ class ShowView: UIView {
     
     private var calendarView: CalendarView = {
         let cal = CalendarView()
-        cal.minimumLineSpacing = 1
-        cal.minimumInteritemSpacing = 1
-        cal.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-        cal.minimumWeekAndDateItemSpacing = 10
-        cal.weekViewHeight = 30
-        cal.monthFooterViewHeight = 20
-        cal.cellAspectRatio = 100.0 / 140.0
+        cal.minimumLineSpacing = 0
+        cal.minimumInteritemSpacing = 0
+        cal.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+//        cal.minimumWeekAndDateItemSpacing = 10
+        cal.weekViewHeight = 35
+        cal.monthHeaderViewHeight = 50
+        cal.monthFooterViewHeight = 14
+        cal.cellAspectRatio = 86.0 / 90.0
         
         cal.register(ShowDayCell.self)
         cal.register(monthHeader: ShowMonthHeaderView.self)
         cal.register(monthFooter: ShowMonthFooterView.self)
+        
+        
+        let weekBottomLine = CALayer()
+        weekBottomLine.frame = CGRect(origin: CGPoint(x: 0, y: 34.5), size: CGSize(width: UIScreen.main.bounds.width - 30 - 32, height: 0.5))
+        weekBottomLine.backgroundColor = UIColor(colorLiteralRed: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
+        
+        cal.weekView.contentView.layer.addSublayer(weekBottomLine)
         return cal
     }()
     
@@ -116,24 +124,30 @@ extension ShowView: CalendarDataSource {
         
         if let cell = cell as? ShowDayCell {
             cell.date = date
+            var price: Float? = nil
+            var state: ShowDayCell.DayCellState = .empty
             if let date = date, let priceDates = self.priceDates {
                 if priceDates.startDate.ge(date, granularity: .day) || date.gt(priceDates.endDate, granularity: .day) {
-                    cell.state = .disabled
+                    price = nil
+                    state = .disabled
                 } else {
                     
                     if let priceDate = self.priceDate(for: date) {
-                        cell.price = priceDate.price
-                        cell.state = priceDate.available ? .available : .unavailable
+                        price = priceDate.price
+                        state = priceDate.available ? .available : .unavailable
                     }
-                    cell.state = .available
                 }
             } else {
-                cell.state = .empty
+                price = nil
+                state = .empty
             }
+            cell.price = price
+            cell.state = state
         }
     }
     
     func calendarView(_ calendarView: CalendarView, monthHeaderView: MonthHeaderView, forMonth date: Date?) {
+        monthHeaderView.style = .custom
     }
     
     func calendarView(_ calendarView: CalendarView, monthFooterView: MonthFooterView, forMonth date: Date?) {

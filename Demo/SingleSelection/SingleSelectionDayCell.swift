@@ -9,13 +9,15 @@
 import UIKit
 import Calendar
 
-enum DayCellState {
-    case empty
-    case normal
-    case selected
-}
+
 
 class SingleSelectionDayCell: DayCell {
+    
+    enum DayCellState {
+        case empty
+        case normal
+        case selected
+    }
     
     var state: DayCellState = .normal {
         didSet {
