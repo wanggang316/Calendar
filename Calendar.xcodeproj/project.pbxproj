@@ -29,6 +29,8 @@
 		338043811E1B846E00924D70 /* RangeComplexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338043801E1B846E00924D70 /* RangeComplexViewController.swift */; };
 		338043831E1B849F00924D70 /* RangeSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338043821E1B849F00924D70 /* RangeSimpleCell.swift */; };
 		338043851E1B860800924D70 /* RangeSimpleMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338043841E1B860800924D70 /* RangeSimpleMonthHeaderView.swift */; };
+		338043871E1BBBB600924D70 /* RangeComplexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338043861E1BBBB600924D70 /* RangeComplexCell.swift */; };
+		338043891E1BBC6D00924D70 /* RangeComplexMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338043881E1BBC6D00924D70 /* RangeComplexMonthHeaderView.swift */; };
 		33ABC6831E161164008E4B31 /* ShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAA29E1E160866004504A5 /* ShowView.swift */; };
 		33ABC6891E161506008E4B31 /* ShowMonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ABC6881E161506008E4B31 /* ShowMonthHeaderView.swift */; };
 		33ABC68B1E161517008E4B31 /* ShowMonthFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ABC68A1E161517008E4B31 /* ShowMonthFooterView.swift */; };
@@ -89,6 +91,8 @@
 		338043801E1B846E00924D70 /* RangeComplexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeComplexViewController.swift; sourceTree = "<group>"; };
 		338043821E1B849F00924D70 /* RangeSimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSimpleCell.swift; sourceTree = "<group>"; };
 		338043841E1B860800924D70 /* RangeSimpleMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSimpleMonthHeaderView.swift; sourceTree = "<group>"; };
+		338043861E1BBBB600924D70 /* RangeComplexCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeComplexCell.swift; sourceTree = "<group>"; };
+		338043881E1BBC6D00924D70 /* RangeComplexMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeComplexMonthHeaderView.swift; sourceTree = "<group>"; };
 		33ABC6861E1614F4008E4B31 /* ShowDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDayCell.swift; sourceTree = "<group>"; };
 		33ABC6881E161506008E4B31 /* ShowMonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMonthHeaderView.swift; sourceTree = "<group>"; };
 		33ABC68A1E161517008E4B31 /* ShowMonthFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMonthFooterView.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				338043801E1B846E00924D70 /* RangeComplexViewController.swift */,
+				338043861E1BBBB600924D70 /* RangeComplexCell.swift */,
+				338043881E1BBC6D00924D70 /* RangeComplexMonthHeaderView.swift */,
 			);
 			path = complex;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 				337DD9351DDB385A00D9CFCE /* CalendarViewController.swift in Sources */,
 				33DAA2AE1E160AD2004504A5 /* SingleSelectionMonthHeaderView.swift in Sources */,
 				331DEB111DDACFDD00ADAF33 /* ViewController.swift in Sources */,
+				338043871E1BBBB600924D70 /* RangeComplexCell.swift in Sources */,
 				33DAA2AD1E160AD2004504A5 /* SingleSelectionMonthFooterView.swift in Sources */,
 				33ABC68C1E16151D008E4B31 /* ShowDayCell.swift in Sources */,
 				33DAA2AC1E160AD2004504A5 /* SingleSelectionDayCell.swift in Sources */,
@@ -385,6 +392,7 @@
 				338043831E1B849F00924D70 /* RangeSimpleCell.swift in Sources */,
 				33ABC68B1E161517008E4B31 /* ShowMonthFooterView.swift in Sources */,
 				3380437F1E1B846600924D70 /* RangeSimpleViewController.swift in Sources */,
+				338043891E1BBC6D00924D70 /* RangeComplexMonthHeaderView.swift in Sources */,
 				331DEB0F1DDACFDD00ADAF33 /* AppDelegate.swift in Sources */,
 				33ABC6831E161164008E4B31 /* ShowView.swift in Sources */,
 				33ABC6891E161506008E4B31 /* ShowMonthHeaderView.swift in Sources */,

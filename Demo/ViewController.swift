@@ -26,6 +26,18 @@ class ViewController: UITableViewController {
                     TableSection(title: "Single Selection", cells: [TableRow.singleSelectionGeneral]),
                     TableSection(title: "Range Selection", cells: [TableRow.rangeSelectionSimple, TableRow.rangeSelectionComplex])]
 
+    
+    var calendarData: PriceDates? = {
+        let path = Bundle.main.path(forResource: "calendar_dates", ofType: "json")
+        let data = NSData.init(contentsOfFile: path!)
+        
+        if let dic = try? JSONSerialization.jsonObject(with: data! as Data, options: []) as? [String: Any] {
+            let dates = PriceDates(dic)
+            print(">>>>> dates: \(dates)")
+            return dates
+        }
+        return nil
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calendar"
@@ -68,14 +80,8 @@ extension ViewController {
         switch cellData {
         case .showView:
             
-            let path = Bundle.main.path(forResource: "calendar_dates", ofType: "json")
-            let data = NSData.init(contentsOfFile: path!)
-            
-            if let dic = try? JSONSerialization.jsonObject(with: data! as Data, options: []) as? [String: Any] {
-                let dates = PriceDates(dic)
-                print(">>>>> dates: \(dates)")
-                
-                let view = ShowView(priceDates: dates)
+            if let data = self.calendarData {
+                let view = ShowView(priceDates: data)
                 view.alpha = 0.0
                 
                 UIApplication.shared.keyWindow?.addSubview(view)
@@ -94,8 +100,12 @@ extension ViewController {
             self.navigationController?.pushViewController(controller, animated: true)
             break
         case .rangeSelectionComplex:
-            let controller = RangeComplexViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
+            if let data = self.calendarData {
+                let controller = RangeComplexViewController()
+                controller.priceDates = data
+                controller.minNights = 2
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
             break
         }
     }
