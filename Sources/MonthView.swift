@@ -23,14 +23,16 @@ open class MonthHeaderView: MonthView {
     
     open var date: Date? {
         didSet {
-            if let date = date, self.style == .default, let textLabel = self.textLabel {
+            if let date = date, self.style == .default {
                 let monthSymbols = Date.formatter.standaloneMonthSymbols
                 if let monthString = monthSymbols?[date.month - 1] {
-                    textLabel.text = monthString
-                    textLabel.sizeToFit()
+                    self.addSubview(self.textLabel)
+                    self.textLabel.text = monthString
+                    self.textLabel.sizeToFit()
                 }
             } else {
-                self.textLabel?.text = nil
+                self.textLabel.removeFromSuperview()
+                self.textLabel.text = nil
             }
         }
     }
@@ -40,24 +42,32 @@ open class MonthHeaderView: MonthView {
         didSet {
             switch style {
             case .default:
-                if self.textLabel == nil {
-                    let label = UILabel()
-                    label.font = UIFont.systemFont(ofSize: 16)
-                    label.textColor = UIColor.darkGray
-                    label.textAlignment = .left
-                    self.textLabel = label
-                    self.addSubview(self.textLabel!)
-                }
+//                if self.textLabel == nil {
+//                    let label = UILabel()
+//                    label.font = UIFont.systemFont(ofSize: 16)
+//                    label.textColor = UIColor.darkGray
+//                    label.textAlignment = .left
+//                    self.textLabel = label
+                    self.addSubview(self.textLabel)
+//                }
             case .custom:
-                self.textLabel = nil
+//                self.textLabel = nil
+                self.textLabel.removeFromSuperview()
             }
         }
     }
     
-    open var textLabel: UILabel?
+    open lazy var textLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.darkGray
+        label.textAlignment = .left
+        return label
+    }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        self.style = .default
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -67,7 +77,7 @@ open class MonthHeaderView: MonthView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         if style == .`default` {
-            self.textLabel?.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.textLabel?.frame.width ?? 0, height: 20))
+            self.textLabel.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.textLabel.frame.width, height: 20))
         }
     }
 }

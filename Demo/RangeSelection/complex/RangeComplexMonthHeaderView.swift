@@ -63,7 +63,7 @@ class RangeComplexMonthHeaderView: MonthHeaderView {
     
     var bottomLine: CALayer = {
         let layer = CALayer()
-        layer.backgroundColor = UIColor(colorLiteralRed: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
+        layer.backgroundColor = UIColor(red: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
         return layer
     }()
 

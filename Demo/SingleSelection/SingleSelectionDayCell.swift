@@ -33,7 +33,7 @@ class SingleSelectionDayCell: DayCell {
                     self.titleLabel.backgroundColor = UIColor.white
 
                     if let date = self.date, date.isToday() {
-                        self.titleLabel.textColor = UIColor(colorLiteralRed: 255.0 / 255.0, green: 60.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
+                        self.titleLabel.textColor = UIColor(red: 255.0 / 255.0, green: 60.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
                     } else if let date = self.date, date.isWeekend() {
                         self.titleLabel.textColor = UIColor.lightGray
                     } else {
@@ -44,7 +44,7 @@ class SingleSelectionDayCell: DayCell {
                     self.titleLabel.layer.cornerRadius = 17
                     self.titleLabel.textColor = UIColor.white
                     if let date = self.date, date.isToday() {
-                        self.titleLabel.backgroundColor = UIColor.init(colorLiteralRed: 255.0 / 255.0, green: 50.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
+                        self.titleLabel.backgroundColor = UIColor(red: 255.0 / 255.0, green: 50.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
                     } else {
                         self.titleLabel.backgroundColor = UIColor.darkGray
                     }
@@ -74,7 +74,7 @@ class SingleSelectionDayCell: DayCell {
     lazy var topLayer: CALayer = {
         let layer = CALayer()
         layer.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 0.5)
-        layer.backgroundColor = UIColor(colorLiteralRed: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).cgColor
+        layer.backgroundColor = UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).cgColor
         return layer
     }()
     

@@ -109,7 +109,7 @@ class RangeComplexViewController: UIViewController {
         cal.weekView.layer.shadowOffset = CGSize(width: 0.0, height: 0.5)
         cal.weekView.layer.shadowOpacity = 0.5
         cal.weekView.layer.shadowRadius = 0.5
-        cal.weekView.layer.shadowColor = UIColor.init(colorLiteralRed: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
+        cal.weekView.layer.shadowColor = UIColor(red: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
         return cal
     }()
     

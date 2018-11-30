@@ -48,7 +48,7 @@ class ShowView: UIView {
     }
     
     // MARK: - Action
-    func cancelAction() {
+    @objc func cancelAction() {
         UIView.animate(withDuration: 0.2, animations: { 
             self.alpha = 0.0
         }) { (finish) in
@@ -89,16 +89,16 @@ class ShowView: UIView {
         
         let weekBottomLine = CALayer()
         weekBottomLine.frame = CGRect(origin: CGPoint(x: 0, y: 34.5), size: CGSize(width: UIScreen.main.bounds.width - 30 - 32, height: 0.5))
-        weekBottomLine.backgroundColor = UIColor(colorLiteralRed: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
+        weekBottomLine.backgroundColor = UIColor(red: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
         
         cal.weekView.contentView.layer.addSublayer(weekBottomLine)
         return cal
     }()
     
     private var cancelButton: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.setImage(UIImage(named: "cancel"), for: UIControlState.normal)
-        button.addTarget(self, action: #selector(cancelAction), for: UIControlEvents.touchUpInside)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(UIImage(named: "cancel"), for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(cancelAction), for: UIControl.Event.touchUpInside)
         return button
     }()
     

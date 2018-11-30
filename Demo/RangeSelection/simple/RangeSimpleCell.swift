@@ -43,29 +43,29 @@ class RangeSimpleCell: DayCell {
             case .disabled:
                 self.stateLabel.removeFromSuperview()
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
             case .available:
                 self.stateLabel.removeFromSuperview()
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
             case .availableDisabled:
                 self.stateLabel.removeFromSuperview()
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
             case .selectedStart:
                 self.contentView.addSubview(self.stateLabel)
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.stateLabel.textColor = UIColor.white
                 self.stateLabel.text = "入住"
             case .selectedMiddle:
                 self.stateLabel.removeFromSuperview()
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 58.0 / 255.0, green: 58.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 58.0 / 255.0, green: 58.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.stateLabel.textColor = UIColor.white
             case .selectedEnd:
                 self.contentView.addSubview(self.stateLabel)
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.stateLabel.textColor = UIColor.white
                 self.stateLabel.text = "退房"
@@ -99,7 +99,7 @@ class RangeSimpleCell: DayCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
-        label.textColor = UIColor(colorLiteralRed: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
+        label.textColor = UIColor(red: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
         return label
     }()
 }

@@ -23,7 +23,7 @@ class SingleSelectionMonthHeaderView: MonthHeaderView {
         super.layoutSubviews()
         if let date = self.date {
             let centerX = (self.frame.width / 14.0) * CGFloat((date.weekday - 1) * 2 + 1)
-            self.textLabel?.center = CGPoint(x: CGFloat(centerX), y: self.frame.height / 2)
+            self.textLabel.center = CGPoint(x: CGFloat(centerX), y: self.frame.height / 2)
         }
     }
 }

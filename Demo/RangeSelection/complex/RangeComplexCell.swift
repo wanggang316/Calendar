@@ -59,21 +59,21 @@ class RangeComplexCell: DayCell {
                 self.backgroundView = nil
                 
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
             case .available:
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = nil
                 
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
-                self.priceLabel.textColor = UIColor(colorLiteralRed: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.priceLabel.textColor = UIColor(red: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
             case .unavailable:
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = self.backgroundImageView
                 
                 self.contentView.backgroundColor = UIColor.clear
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
-                self.priceLabel.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.priceLabel.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
                 
                 self.priceLabel.text = "已租"
                 
@@ -82,25 +82,25 @@ class RangeComplexCell: DayCell {
                 self.backgroundView = nil
                 
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
-                self.priceLabel.textColor = UIColor(colorLiteralRed: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+                self.priceLabel.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
             case .selectedStart:
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = nil
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.priceLabel.textColor = UIColor.white
                 self.priceLabel.text = "入住"
             case .selectedMiddle:
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = nil
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 58.0 / 255.0, green: 58.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 58.0 / 255.0, green: 58.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.priceLabel.textColor = UIColor.white
             case .selectedEnd:
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = nil
-                self.contentView.backgroundColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.contentView.backgroundColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
                 self.textLabel?.textColor = UIColor.white
                 self.priceLabel.textColor = UIColor.white
                 self.priceLabel.text = "入住"
@@ -108,8 +108,8 @@ class RangeComplexCell: DayCell {
                 self.contentView.addSubview(self.priceLabel)
                 self.backgroundView = nil
                 self.contentView.backgroundColor = UIColor.white
-                self.textLabel?.textColor = UIColor(colorLiteralRed: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
-                self.priceLabel.textColor = UIColor(colorLiteralRed: 157.0 / 255.0 , green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
+                self.textLabel?.textColor = UIColor(red: 9.0 / 255.0, green: 9.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
+                self.priceLabel.textColor = UIColor(red: 157.0 / 255.0 , green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
                 self.priceLabel.text = "仅退房"
                 
             }
@@ -147,14 +147,14 @@ class RangeComplexCell: DayCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.textAlignment = .center
-        label.textColor = UIColor(colorLiteralRed: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
+        label.textColor = UIColor(red: 157.0 / 255.0, green: 157.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
         return label
     }()
     
     var backgroundImageView: UIImageView {
         let imageView: UIImageView = UIImageView()
         imageView.image = UIImage(named: "unavailable1")
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }

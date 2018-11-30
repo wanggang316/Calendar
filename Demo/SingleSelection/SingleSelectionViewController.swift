@@ -17,7 +17,7 @@ class SingleSelectionViewController: UIViewController {
         let cal = CalendarView()
         cal.minimumLineSpacing = 1
         cal.minimumInteritemSpacing = 1
-        cal.contentInset = UIEdgeInsets(top: 64, left: 10, bottom: 10, right: 10)
+        cal.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         cal.minimumWeekAndDateItemSpacing = 10
         cal.weekViewHeight = 30
         cal.monthFooterViewHeight = 20
@@ -48,7 +48,7 @@ class SingleSelectionViewController: UIViewController {
         //        let toDate = calendar.date(from: components)!
         //        self.calendarView.toDate = toDate
         
-        self.calendarView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.calendarView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height)
         self.calendarView.dataSource = self
         self.calendarView.delegate = self
         self.view.addSubview(self.calendarView)
