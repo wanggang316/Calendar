@@ -189,10 +189,10 @@
 		23CA60A921B0FC0C00EA7E5B /* SingleSelection */ = {
 			isa = PBXGroup;
 			children = (
+				23CA60AD21B0FC0C00EA7E5B /* SingleSelectionViewController.swift */,
 				23CA60AA21B0FC0C00EA7E5B /* SingleSelectionMonthFooterView.swift */,
 				23CA60AB21B0FC0C00EA7E5B /* SingleSelectionMonthHeaderView.swift */,
 				23CA60AC21B0FC0C00EA7E5B /* SingleSelectionDayCell.swift */,
-				23CA60AD21B0FC0C00EA7E5B /* SingleSelectionViewController.swift */,
 			);
 			path = SingleSelection;
 			sourceTree = "<group>";

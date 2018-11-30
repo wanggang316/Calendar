@@ -12,39 +12,31 @@ class SheetDatePickerDayCell: DayCell {
     
     enum DayCellState {
         case empty
+        case disabled
         case normal
         case selected
     }
     
     var state: DayCellState = .normal {
         didSet {
+
             switch state {
             case .empty:
-                self.topLayer.isHidden = true
+                self.descLabel.removeFromSuperview()
+                self.backView.backgroundColor = UIColor.white
                 self.titleLabel.text = nil
-                self.titleLabel.backgroundColor = UIColor.white
-                self.titleLabel.layer.cornerRadius = 0
+            case .disabled:
+                self.descLabel.removeFromSuperview()
+                self.backView.backgroundColor = UIColor.white
+                self.titleLabel.textColor = UIColor(red: 192.0 / 255.0, green: 192.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
             case .normal:
-                self.topLayer.isHidden = false
-                self.titleLabel.layer.cornerRadius = 0
-                self.titleLabel.backgroundColor = UIColor.white
-                
-                if let date = self.date, date.isToday() {
-                    self.titleLabel.textColor = UIColor(red: 255.0 / 255.0, green: 60.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
-                } else if let date = self.date, date.isWeekend() {
-                    self.titleLabel.textColor = UIColor.lightGray
-                } else {
-                    self.titleLabel.textColor = UIColor.darkGray
-                }
+                self.descLabel.removeFromSuperview()
+                self.backView.backgroundColor = UIColor.white
+                self.titleLabel.textColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)
             case .selected:
-                self.topLayer.isHidden = false
-                self.titleLabel.layer.cornerRadius = 17
-                self.titleLabel.textColor = UIColor.white
-                if let date = self.date, date.isToday() {
-                    self.titleLabel.backgroundColor = UIColor(red: 255.0 / 255.0, green: 50.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
-                } else {
-                    self.titleLabel.backgroundColor = UIColor.darkGray
-                }
+                self.backView.addSubview(self.descLabel)
+                self.backView.backgroundColor = UIColor(red: 255.0 / 255.0, green: 245.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0)
+                self.titleLabel.textColor = UIColor(red: 243.0 / 255.0, green: 152.0 / 255.0, blue: 0, alpha: 1.0)
             }
         }
     }
@@ -64,22 +56,32 @@ class SheetDatePickerDayCell: DayCell {
         label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = UIColor.darkGray
         label.textAlignment = .center
+        label.layer.cornerRadius = 2
         label.clipsToBounds = true
         return label
     }()
     
-    lazy var topLayer: CALayer = {
-        let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 0.5)
-        layer.backgroundColor = UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).cgColor
-        return layer
+    lazy var descLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor(red: 243.0 / 255.0, green: 152.0 / 255.0, blue: 0, alpha: 1.0)
+        label.textAlignment = .center
+        label.text = "起租"
+        return label
+    }()
+    
+    lazy var backView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 2
+        view.backgroundColor = UIColor.white
+        return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(titleLabel)
+        contentView.addSubview(backView)
+        backView.addSubview(titleLabel)
         self.backgroundColor = UIColor.white
-        self.layer.addSublayer(self.topLayer)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,8 +90,15 @@ class SheetDatePickerDayCell: DayCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.titleLabel.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        self.titleLabel.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 13)
+        backView.frame = self.bounds
+        self.titleLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: 24)
+        self.titleLabel.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 6)
+        switch state {
+        case .selected:
+            self.descLabel.frame = CGRect(x: 0, y: self.titleLabel.frame.maxY, width: self.bounds.width, height: 14)
+        default: break
+        }
+        
     }
     
 }

@@ -32,19 +32,31 @@ open class WeekView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         self.addSubview(self.contentView)
+
+        let weekdaySymbols = Date.formatter.shortWeekdaySymbols
         
-        let weekdaySymbols = Date.formatter.veryShortWeekdaySymbols
-        
-        for (index, element) in weekdaySymbols!.enumerated() {
+        for (index, _) in weekdaySymbols!.enumerated() {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 15)
             label.textColor = UIColor.darkGray
             label.textAlignment = .center
             label.tag = 109001 + index
-            label.text = element
+            label.text = self.weekdayDescription(for: index)
             self.contentView.addSubview(label)
         }
-        
+    }
+    
+    func weekdayDescription(for index: Int) -> String {
+        switch index {
+        case 0: return "日"
+        case 1: return "一"
+        case 2: return "二"
+        case 3: return "三"
+        case 4: return "四"
+        case 5: return "五"
+        case 6: return "六"
+        default: return ""
+        }
     }
     
     public convenience init() {

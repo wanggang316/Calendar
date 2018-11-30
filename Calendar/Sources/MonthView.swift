@@ -23,12 +23,16 @@ open class MonthHeaderView: MonthView {
     
     open var date: Date? {
         didSet {
-            if let date = date, self.style == .default {
-                let monthSymbols = Date.formatter.standaloneMonthSymbols
-                if let monthString = monthSymbols?[date.month - 1] {
-                    self.addSubview(self.textLabel)
-                    self.textLabel.text = monthString
-                    self.textLabel.sizeToFit()
+            if let date = date {
+                if self.style == .default {
+                    let monthSymbols = Date.formatter.standaloneMonthSymbols
+                    if let monthString = monthSymbols?[date.month - 1] {
+                        self.addSubview(self.textLabel)
+                        self.textLabel.text = monthString
+                        self.textLabel.sizeToFit()
+                    }
+                } else {
+                    self.textLabel.removeFromSuperview()
                 }
             } else {
                 self.textLabel.removeFromSuperview()

@@ -13,11 +13,15 @@ class SheetPickerCalendarMonthView: MonthHeaderView {
     override var date: Date? {
         didSet {
             if let date = date {
-                let monthSymbols = Date.formatter.standaloneMonthSymbols
-                if let monthString = monthSymbols?[date.month - 1] {
-                    self.monthLabel.text = monthString
-                }
-                self.yearLabel.text = String(date.year)
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy年MM月"
+                dateFormatter.string(from: date)
+                
+//                let monthSymbols = Date.formatter.standaloneMonthSymbols
+//                if let monthString = monthSymbols?[date.month - 1] {
+                    self.monthLabel.text = dateFormatter.string(from: date)
+//                }
                 self.monthLabel.sizeToFit()
             } else {
             }
@@ -26,9 +30,8 @@ class SheetPickerCalendarMonthView: MonthHeaderView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.style = .custom
         self.addSubview(self.monthLabel)
-        self.addSubview(self.yearLabel)
-        // self.layer.addSublayer(self.bottomLine)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,30 +41,16 @@ class SheetPickerCalendarMonthView: MonthHeaderView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if let _ = self.date {
-            self.monthLabel.frame = CGRect(x: 13, y: 20, width: self.monthLabel.frame.width, height: 20)
-            self.yearLabel.frame = CGRect(x: self.monthLabel.frame.maxX + 3, y: self.monthLabel.frame.maxY - 2 - 9, width: 100, height: 9)
-            //            self.bottomLine.frame = CGRect(x: self.monthLabel.frame.minX, y: self.monthLabel.frame.maxY + 11, width: 30, height: 2)
+            self.monthLabel.frame = CGRect(x: 0, y: 0, width: self.monthLabel.frame.width, height: 20)
+            self.monthLabel.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         }
     }
     
     // MARK: - UI
     var monthLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.darkText
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)
         return label
-    }()
-    
-    var yearLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 9)
-        label.textColor = UIColor.darkText
-        return label
-    }()
-    
-    var bottomLine: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 230.0 / 255.0, green: 230.0 / 255.0, blue: 233.0 / 255.0, alpha: 1.0).cgColor
-        return layer
     }()
 }

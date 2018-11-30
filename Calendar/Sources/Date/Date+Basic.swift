@@ -13,6 +13,9 @@ public extension Date {
     public static var gregorianCalendar: Calendar {
         var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         calendar.timeZone = TimeZone(identifier: "GMT")!
+        
+        let local = Locale.current
+        calendar.locale = local
         return calendar
     }
     

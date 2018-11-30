@@ -35,11 +35,22 @@ class ViewController: UITableViewController {
         
         if let dic = try? JSONSerialization.jsonObject(with: data! as Data, options: []) as? [String: Any] {
             let dates = PriceDates(dic)
-            print(">>>>> dates: \(dates)")
+            print(">>>>> dates: \(String(describing: dates))")
             return dates
         }
         return nil
     }()
+    
+    lazy var sheetView: SheetDatePickerView = {
+        let sheetView = SheetDatePickerView()
+        sheetView.selectedHandler = { date in
+            self.selectedDate = date
+            print("selected date is: \(date)")
+        }
+        return sheetView
+    }()
+    var selectedDate: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calendar"
@@ -101,8 +112,9 @@ extension ViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         case .sheetPicker:
             
-            let view = SheetDatePickerView()
-            view.show()
+            sheetView.startDate = Date()
+            sheetView.selectedDate = self.selectedDate?.addingTimeInterval(60 * 60 * 24)
+            sheetView.show()
             
             break
         case .rangeSelectionSimple:
