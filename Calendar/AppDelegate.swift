@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
 //        
 //        let dateString = formatter.string(from: date)
-        
         return true
     }
 

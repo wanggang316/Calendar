@@ -6,8 +6,7 @@
 //  Copyright © 2017 GUM. All rights reserved.
 //
 
-import Foundation
-import Calendar
+import UIKit
 
 class RangeSimpleCell: DayCell {
     

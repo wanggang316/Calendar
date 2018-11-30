@@ -6,7 +6,7 @@
 //  Copyright © 2016 GUM. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public enum MonthViewStyle : Int {
     /// View with text label which is shown the date.

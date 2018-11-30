@@ -11,8 +11,10 @@ import UIKit
 enum TableRow: String {
     case showView = "view"
     case singleSelectionGeneral = "general"
+    case sheetPicker = "sheetPicker"
     case rangeSelectionSimple = "simple"
     case rangeSelectionComplex = "complex"
+    
 }
 
 struct TableSection {
@@ -23,7 +25,7 @@ struct TableSection {
 class ViewController: UITableViewController {
     
     let tableData = [TableSection(title: "Show", cells: [TableRow.showView]),
-                    TableSection(title: "Single Selection", cells: [TableRow.singleSelectionGeneral]),
+                    TableSection(title: "Single Selection", cells: [TableRow.singleSelectionGeneral, .sheetPicker]),
                     TableSection(title: "Range Selection", cells: [TableRow.rangeSelectionSimple, TableRow.rangeSelectionComplex])]
 
     
@@ -77,6 +79,7 @@ extension ViewController {
         
         let cellData = tableData[indexPath.section].cells[indexPath.row]
         
+
         switch cellData {
         case .showView:
             
@@ -93,8 +96,15 @@ extension ViewController {
         
             break
         case .singleSelectionGeneral:
+        
             let controller = SingleSelectionViewController()
             self.navigationController?.pushViewController(controller, animated: true)
+        case .sheetPicker:
+            
+            let view = SheetDatePickerView()
+            view.show()
+            
+            break
         case .rangeSelectionSimple:
             let controller = RangeSimpleViewController()
             self.navigationController?.pushViewController(controller, animated: true)
